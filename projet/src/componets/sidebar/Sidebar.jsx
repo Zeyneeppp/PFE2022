@@ -10,8 +10,9 @@ function Sidebar() {
   return (
     <div className='sidebar'>
         <div className='top'>
-            <span className="logo">Network Manager</span>
+            <span className="logo">Name Application</span>
         </div>
+        <hr />
         <div className='center'>
             <ul>
                 <li>

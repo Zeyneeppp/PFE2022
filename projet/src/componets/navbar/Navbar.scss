@@ -1,13 +1,10 @@
 .navbar{
-    height: 65px;
-    // border-bottom: 0.5px solid rgb(231, 228, 228);
+    height: 60px;
+    border-bottom: 0.5px solid rgb(231, 228, 228);
     display: flex;
     align-items: center;
     font-size: 14px;
-    color: #fff;
-    background-color: #36f;
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-    box-shadow: 2px 4px 10px 1px rgba(58, 52, 52, 0.47);
+    color: #555;
     
     .wrapper{
         width: 100%;
@@ -19,11 +16,8 @@
         .search{
             display: flex;
             align-items: center;
-            // border: 0.5px solid lightgray;
-            padding: 5px;
-            background-color: rgb(202, 212, 238);
-            border-radius: 8px;
-            
+            border: 0.5px solid lightgray;
+            padding: 3px;
 
             input{
                 border: none;
@@ -47,7 +41,7 @@
                 position: relative;
 
                 .icon{
-                    font-size: 25px;
+                    font-size: 20px;
                 }
                 .avatar{
                     width: 30px;

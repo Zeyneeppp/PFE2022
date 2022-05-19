@@ -1,0 +1,33 @@
+$main_color: #c9ad67b0;
+.main-login {
+	height: 100vh;
+	min-width: 100vw;
+	overflow-x: hidden;
+	background: linear-gradient(
+		to right,
+		rgb(206, 205, 205) 50%,
+		$main_color 50%
+	);
+	.login-container {
+		height: 75vh;
+		width: 70%;
+		background: linear-gradient(
+			to right bottom,
+			rgba(236, 236, 236, 0.7),
+			rgba(236, 236, 236, 0.4)
+		);
+		border-radius: 1rem;
+		margin: 2rem auto;
+		box-shadow: 0.5rem 0.5rem 2rem -0.5rem rgb(91, 89, 89);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		.left-side,
+		.right-side {
+			margin: 2rem;
+			box-shadow: 0.5rem 0.5rem 2rem -1rem rgb(58, 57, 57);
+			height: 80%;
+			width: 100%;
+		}
+	}
+}

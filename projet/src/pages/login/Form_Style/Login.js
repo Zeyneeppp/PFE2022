@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
-import axios from "../Api/axios";
+import axios from "../../../Api/axios";
 
 import AuthContext from "../ContextApi/AuthProvider";
 
@@ -7,6 +7,7 @@ import AuthContext from "../ContextApi/AuthProvider";
 const Log_path = "./auth";
 
 export default function Login() {
+	//--------------------------------------LOGIN'S DATA---------------------------------------------------------
 	const { setAuth } = useContext(AuthContext);
 	const userRef = useRef();
 	const errRef = useRef();
@@ -15,14 +16,17 @@ export default function Login() {
 	const [pwd, setPwd] = useState("");
 	const [err, setErr] = useState("");
 
+	//!***!Focus on the input border but it doesnt work :)
 	useEffect(() => {
 		userRef.current.focus();
 	}, []);
+
 	//to clear the error when the user start re-write his data
 	useEffect(() => {
 		setErr("");
 	}, [userName, pwd]);
 
+	//-----------------------------------INTERACT WITH THE SERVER AFTER CLICKING THE SUBMIT BUTTON-------------------------------------------//
 	const handleSubmit = async (e) => {
 		//for preventing page reloiding
 		e.preventDefault();
@@ -54,7 +58,7 @@ export default function Login() {
 			errRef.current.focus();
 		}
 	};
-
+	//--------------------------------------------------------------------------------------------------//
 	return (
 		<section className="form-container">
 			<div className="form-content-left"></div>

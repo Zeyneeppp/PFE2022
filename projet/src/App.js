@@ -6,6 +6,8 @@ import UsersManager from "./pages/users_manger/UsersManager";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/login/Form_Style/Login";
 import "./pages/login/login.css";
+import DatabaseTable from "./pages/databasePage/DatabaseTable";
+import "./pages/databasePage/datatable.css";
 function App() {
 	return (
 		<div className="App">
@@ -19,6 +21,7 @@ function App() {
 							<Route path="new" element={<New />} />
 							<Route path=":userID" element={<Single />} />
 						</Route>
+						<Route path="database" element={<DatabaseTable />} />
 
 						<Route path="Branches">
 							<Route index element={<List />} />

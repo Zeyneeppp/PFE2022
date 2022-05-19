@@ -9,7 +9,7 @@ import "./pages/login/login.css";
 import "./pages/login/Form_Style/signin.scss";
 import DatabaseTable from "./pages/databasePage/DatabaseTable";
 import "./pages/databasePage/datatable.css";
-// import SignIn from "./pages/login/Form_Style/SignIn";
+import SignIn from "./pages/login/Form_Style/SignIn";
 
 function App() {
 	return (

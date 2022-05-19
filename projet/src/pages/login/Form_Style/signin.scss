@@ -10,7 +10,7 @@ $main_color: #c9ad67b0;
 	);
 	.login-container {
 		height: 75vh;
-		width: 70%;
+		width: 50%;
 		background: linear-gradient(
 			to right bottom,
 			rgba(236, 236, 236, 0.7),
@@ -25,9 +25,19 @@ $main_color: #c9ad67b0;
 		.left-side,
 		.right-side {
 			margin: 2rem;
-			box-shadow: 0.5rem 0.5rem 2rem -1rem rgb(58, 57, 57);
 			height: 80%;
 			width: 100%;
+		}
+		.right-side {
+			box-shadow: 0.5rem 0.5rem 2rem -1rem rgb(58, 57, 57);
+
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.buttontexte {
+			font-size: small;
 		}
 	}
 }

@@ -17,7 +17,7 @@ import Login from "../login/Form_Style/Login";
 import DialogUsers from "../../componets/popupdialog/DialogUsers";
 import DataService from "./DataService";
 import axios from "../../Api/axios";
-
+import "../login/Form_Style/signin.scss";
 const UsersManager = () => {
 	const initialValue = { username: "", email: "", branche: "" };
 	const [dataTable, setDataTable] = useState(userRows);

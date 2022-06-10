@@ -1,7 +1,9 @@
 $main_color: #c9ad67b0;
 .main-login {
-	height: 100vh;
-	min-width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 45px;
 	overflow-x: hidden;
 	// background: linear-gradient(
 	// 	to right,
@@ -12,7 +14,7 @@ $main_color: #c9ad67b0;
 }
 .login-container {
 	height: 75vh;
-	width: 60%;
+	width: 63%;
 
 	// background: linear-gradient(
 	// 	to right bottom,
@@ -36,8 +38,6 @@ $main_color: #c9ad67b0;
 	width: 100%;
 }
 .right-side {
-	box-shadow: 0.5rem 0.5rem 2rem -1rem rgb(58, 57, 57);
-	background-color: white;
 	display: flex;
 	flex-direction: column;
 	align-items: center;

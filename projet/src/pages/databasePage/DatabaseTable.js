@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
@@ -6,22 +6,21 @@ import { Button, Toolbar, Typography } from "@mui/material";
 import PrintIcon from "@mui/icons-material/Print";
 function DatabaseTable() {
 	const gridRef = useRef();
-	const rowData = [
-		{
-			Code_Site: "1",
-			Site: "A",
-			Branche: "a",
-			Numero_ligne: "",
-			Amodifier: "",
-		},
-		{
-			Code_Site: "2",
-			Site: "B",
-			Branche: "b",
-			Numero_ligne: "",
-			Amodifier: "",
-		},
-	];
+	const [dataBD, setDataBD] = useState([]);
+	useEffect(() => {
+		const getDataBD = async () => {
+			try {
+				const res = await fetch("http://localhost:8080/api/one");
+				const getData = await res.json();
+				setDataBD(getData);
+				console.log(getData);
+			} catch (e) {
+				console.log(e);
+			}
+		};
+		getDataBD();
+	}, []);
+	const rowData = dataBD.map((getdata) => getdata.CODE_SITE);
 	const ManipulationData = {
 		sortable: true,
 		filter: true,
@@ -33,17 +32,24 @@ function DatabaseTable() {
 	}, []);
 
 	const [columnDefs] = useState([
-		{ field: "Code_Site" },
-		{ field: "Site" },
-		{ field: "Branche" },
-		{ field: "Numero_ligne" },
-		{ field: "Amodifier" },
+		{ field: "CODE_SITE" },
+		{ field: "CODE_BR" },
+		{ field: "CODE_WILAYA" },
+		// {
+		// 	field: "NOM_WILAYA",
+		// 	valueGetter: (params) => params.data.WILAYA.NOM_WILAYA,
+		// },
+		{ field: "DESIGNATION_STRUCTURE" },
 	]);
 	return (
 		<div>
 			<div
 				className="ag-theme-alpine"
-				style={{ height: "500px", width: "80%", padding: "20px" }}
+				style={{
+					height: "500px",
+					width: "80%",
+					padding: "50px",
+				}}
 			>
 				<Toolbar>
 					<div className="titleDBTable">

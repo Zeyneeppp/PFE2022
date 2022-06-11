@@ -11,25 +11,26 @@ import DatabaseTable from "./pages/databasePage/DatabaseTable";
 import "./pages/databasePage/datatable.css";
 import SignIn from "./pages/login/Form_Style/SignIn";
 
+
 function App() {
 	return (
 		<div className="App">
 			<BrowserRouter>
 				<Routes>
 					<Route path="/">
-						<Route index element={<Home />} />
-						<Route path="Login" element={<Login />} />
-						<Route path="users" element={<UsersManager />}>
+						<Route index element={<Login />} />
+						<Route exact path="Home" element={<Home  />} />
+						<Route exact path="users" element={<UsersManager />}>
 							<Route index element={<List />} />
-							<Route path="new" element={<New />} />
-							<Route path=":userID" element={<Single />} />
+							<Route exact path="new" element={<New />} />
+							<Route exact path=":userID" element={<Single />} />
 						</Route>
-						<Route path="database" element={<DatabaseTable />} />
+						<Route exact path="database" element={<DatabaseTable />} />
 
-						<Route path="Branches">
+						<Route exact path="Branches">
 							<Route index element={<List />} />
-							<Route path=":brancheId" element={<Single />} />
-							<Route path="new" element={<New />} />
+							<Route exact path=":brancheId" element={<Single />} />
+							<Route exact path="new" element={<New />} />
 						</Route>
 					</Route>
 				</Routes>

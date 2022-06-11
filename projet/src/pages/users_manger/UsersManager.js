@@ -6,6 +6,8 @@ import { useState } from "react";
 import { Button, Popover } from "@mui/material";
 import { Delete, Edit } from "@mui/icons-material";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import Sidebar from "../../componets/sidebar/Sidebar";
+import Navbar from "../../componets/navbar/Navbar";
 import { AgGridReact } from "ag-grid-react";
 import {
 	Dialog,
@@ -18,6 +20,7 @@ import DialogUsers from "../../componets/popupdialog/DialogUsers";
 import DataService from "./DataService";
 import axios from "../../Api/axios";
 import "../login/Form_Style/signin.scss";
+
 const UsersManager = () => {
 	const initialValue = { username: "", email: "", branche: "" };
 	const [dataTable, setDataTable] = useState(userRows);
@@ -57,6 +60,7 @@ const UsersManager = () => {
 			renderCell: (params) => {
 				return (
 					<div className="cellAction">
+						
 						<Button
 							startIcon={<Edit />}
 							onClick={() => handleUpdate(params.row)}
@@ -107,9 +111,13 @@ const UsersManager = () => {
 	};
 
 	return (
-		<div className="datatable">
-			<div className="datatableTitle">
-				Users Manager
+		<div className="pagetotale">
+			<Sidebar/>
+			
+			<div className="datatable">
+			<Navbar />
+				<div className="datatableTitle">
+					Users Manager
 				<Button
 					startIcon={<AddBoxIcon />}
 					size="Large"
@@ -134,6 +142,8 @@ const UsersManager = () => {
 				handleFormSubmit={handleFormSubmit}
 			/>
 		</div>
+		</div>
+		
 	);
 };
 

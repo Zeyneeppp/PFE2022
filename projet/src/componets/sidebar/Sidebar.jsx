@@ -1,82 +1,100 @@
 import React from 'react'
 import './Sidebar.scss'
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import SettingsIcon from '@mui/icons-material/Settings';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import {Link} from "react-router-dom"
+
 
 function Sidebar() {
   return (
     <div className='sidebar'>
         <div className='top'>
-            <span className="logo">Name Application</span>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/LogoNAFTAL.svg" alt='' className="Logonaftal" />
+            <Link to="/home" style={{textDecoration :"none"}}>
+            <span className="logo">Network Manager</span>
+            </Link>
+            
         </div>
-        <hr />
         <div className='center'>
             <ul>
+                <p className='title'>NETWORK MANAGER
+                <p className='sous_title'> Dashboard et Widgets</p></p>
+                <Link to = '/home' style={{textDecoration :"none"}} >
                 <li>
-                    <DashboardIcon className='icon'/>
+                    <DashboardOutlinedIcon className='icon' style={{textDecoration :"none"}}/>
                     <span>Dashboard</span>
                 </li>
+                </Link>
                 <p className='title'>Main
                 <p className='sous_title'> les application</p></p>
-                <li>
-                    <AccountBoxIcon className='icon'/>
-                    <span>Users</span></li>
+                <Link to="/users" style={{textDecoration :"none"}}>
                     <li>
-                    <QueryStatsIcon className='icon'/>
-                    <span>Statiqtique</span>
-                </li>
-                <li>
-                    <SettingsIcon className='icon'/>
-                    <span>Settings</span>
-                </li>
-                <li>
-                    <SupervisorAccountIcon className='icon'/>
-                    <span>admin</span>
-                </li>
+                        <GroupOutlinedIcon className='icon'/>
+                        <span>Users</span>
+                    </li>
+                </Link>
+                <Link to="/users" style={{textDecoration :"none"}}>
+                    {/* <li>
+                        <QueryStatsIcon className='icon'/>
+                        <span>Statiqtique</span>
+                    </li> */}
+                </Link>
+                <Link to="/" style={{textDecoration :"none"}}>
+                    {/* <li>
+                        <SettingsOutlinedIcon className='icon'/>
+                        <span>Settings</span>
+                    </li> */}
+                </Link>
+               
+                
                 <p className='title'>Branches
                 <p className='sous_title'> Les branches</p>
                 </p>
-                <li>
-                    <span>CBR</span>
-                </li>
-                <li>
-                    <span>COM</span>
-                </li>
-                <li>
-                    <span>GPL</span>
-                </li>
+                <Link to="database" style={{textDecoration :"none"}}>
+                    <li>
+                        <span>CBR</span>
+                    </li>
+                </Link>
+                <Link to="/database" style={{textDecoration :"none"}}>
+                    <li>
+                        <span>COM</span>
+                    </li>
+                </Link>
+                <Link to="/database" style={{textDecoration :"none"}}>
+                    <li>
+                        <span>GPL</span>
+                    </li>
+                </Link>
+        
                 <p className='title'>Liaisons</p>
-                <li>
-                    <span>Adsl</span>
-                </li>
-                <li>
-                    <span>Ooredoo</span>
-                </li>
-                <li>
-                    <span>Mobilis</span>
-                </li>
-                <li>
-                    <span>VPN</span>
-                </li>
-                <li>
-                    <span>4G LTE</span>
-                </li>
-                <li>
-                    <span>lLS(FO)</span>
-                </li>
+                <Link to="/database" style={{textDecoration :"none"}}>
+                    <li>
+                        <span>Ooredoo</span>
+                    </li>
+                </Link>
+                <Link to="/database" style={{textDecoration :"none"}}>
+                    <li>
+                        <span>Mobilis</span>
+                    </li>
+                </Link>
+                <Link to="/database" style={{textDecoration :"none"}}>
+                    <li>
+                        <span>4G LTE</span>
+                    </li>
+                </Link>
+                <Link to="/database" style={{textDecoration :"none"}}>
+                    <li>
+                        <span>VPN</span>
+                    </li>
+                </Link>
                
             </ul>
 
         </div>
-        <div className='bottom'>
-            <div className="colorOption"></div>
-            <div className="colorOption"></div>
-            <div className="colorOption"></div>
-            <div className="colorOption"></div>
-        </div>
+       
 
     </div>
   )

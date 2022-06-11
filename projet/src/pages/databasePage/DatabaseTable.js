@@ -4,6 +4,10 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { Button, Toolbar, Typography } from "@mui/material";
 import PrintIcon from "@mui/icons-material/Print";
+import Sidebar from "../../componets/sidebar/Sidebar";
+import Navbar from "../../componets/navbar/Navbar";
+import AddBoxIcon from "@mui/icons-material/Add";
+
 function DatabaseTable() {
 	const gridRef = useRef();
 	const [dataBD, setDataBD] = useState([]);
@@ -315,6 +319,11 @@ function DatabaseTable() {
 						<Button
 							size="large"
 							startIcon={<PrintIcon />}
+							onClick={Export}
+						></Button>
+						<Button
+							size="large"
+							startIcon={<AddBoxIcon />}
 							onClick={Export}
 						></Button>
 					</div>

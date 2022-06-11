@@ -42,12 +42,13 @@ export default function Login() {
 			);
 			console.log(JSON.stringify(response?.data));
 			const accessToken = response?.data?.accessToken;
+			const refreshToken = response?.data?.refreshToken;
 			const roles = response?.data?.roles;
 			setUserName("");
 			setPwd("");
 		} catch (err) {
 			if (!err?.response) {
-				setErr("No Server Response");
+				setErr ("No Server Response");
 			} else if (err.response?.status === 400) {
 				setErr("Missing Username or Password");
 			} else if (err.response?.status === 401) {

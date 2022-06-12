@@ -75,13 +75,13 @@ function SignIn() {
 	/*********************************STYLING*************************************** */
 	const paperStyle = {
 		padding: 30,
-		height: "45vh",
-		width: 280,
+		height: "50vh",
+		width: 290,
 		margin: "20px auto",
 		marginTop: "73px",
 	};
-	const buttonstyle = { backgroundColor: "#0000FF" };
-	const avatarStyle = { backgroundColor: "#0000FF" };
+	const buttonstyle = { backgroundColor: "#213164" };
+	const avatarStyle = { backgroundColor: "#213164" };
 	return (
 		<div className="main-login">
 			<div className="login-container">
@@ -89,7 +89,7 @@ function SignIn() {
 				<div className="right-side">
 					<Grid>
 						<Paper elevation={10} style={paperStyle}>
-							<Grid align="center" sx={{ mb: "29px" }}>
+							<Grid align="center" sx={{ mb: "50px" }}>
 								<Avatar
 									style={avatarStyle}
 									sx={{
@@ -113,6 +113,7 @@ function SignIn() {
 								required
 								variant="standard"
 								margin="normal"
+								sx={{ ml: "25px" }}
 							/>
 							<TextField
 								id="input-with-icon-textfield"
@@ -126,13 +127,14 @@ function SignIn() {
 								}}
 								variant="standard"
 								margin="normal"
+								sx={{ ml: "25px" }}
 							/>
 							<FormControlLabel
 								control={
 									<Checkbox name="checkedB" color="primary" size="400px" />
 								}
 								label="Remember me"
-								sx={{ display: "flex", ml: "-5px", mt: "3px" }}
+								sx={{ display: "flex", ml: "18px", mt: "3px" }}
 							/>
 							<Button
 								variant="contained"

@@ -1,20 +1,38 @@
 $main_color: #c9ad67b0;
+html,
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
 .main-login {
+	// height: 100vh;
+	position: absolute;
+
+	height: 100%;
+	width: 100%;
+	// top: 0px;
+	// right: 0px;
+	// bottom: 0px;
+	// left: 0px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 45px;
+	// margin-top: 45px;
 	overflow-x: hidden;
+
 	// background: linear-gradient(
 	// 	to right,
 	// 	rgb(206, 205, 205) 50%,
 	// 	$main_color 50%
 	// );
-	background-color: rgb(255, 255, 255);
+
+	background-size: cover;
+	background-color: #f8f8f8;
 }
 .login-container {
-	height: 75vh;
-	width: 63%;
+	height: 85vh;
+	width: 80%;
 
 	// background: linear-gradient(
 	// 	to right bottom,
@@ -22,8 +40,9 @@ $main_color: #c9ad67b0;
 	// 	rgba(236, 236, 236, 0.4)
 	// );
 	background-color: white;
-	background-image: url("https://radioalgerie.dz/news/sites/default/files/field/image/STATION.jpeg");
-
+	// background-image: url("15409withlogo [Converted]-01.jpg");
+	background-size: cover;
+	background-image: url("15409withlogo [Converted]-01.jpg");
 	border-radius: 1rem;
 	margin: 2rem auto;
 	box-shadow: 0.5rem 0.5rem 2rem -0.5rem rgb(91, 89, 89);
@@ -42,6 +61,8 @@ $main_color: #c9ad67b0;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	margin-right: 195px;
+	margin-bottom: 115px;
 }
 .buttontexte {
 	font-size: small;

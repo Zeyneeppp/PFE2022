@@ -308,24 +308,24 @@ function DatabaseTable() {
 			<div
 				className="ag-theme-alpine"
 				style={{
-					height: "500px",
-					width: "80%",
+					height: "550px",
+					width: "92%",
 					padding: "50px",
 				}}
 			>
 				<Toolbar>
 					<div className="titleDBTable">
-						Mobilis
+						Global Table
 						<Button
 							size="large"
 							startIcon={<PrintIcon />}
 							onClick={Export}
 						></Button>
-						<Button
+						{/* <Button
 							size="large"
 							startIcon={<AddBoxIcon />}
 							onClick={Export}
-						></Button>
+						></Button> */}
 					</div>
 				</Toolbar>
 				<AgGridReact

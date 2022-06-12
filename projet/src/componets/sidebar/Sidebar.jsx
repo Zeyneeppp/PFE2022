@@ -84,6 +84,11 @@ function Sidebar() {
 							<span>Global</span>
 						</li>
 					</Link>
+					<Link to="/Try" style={{ textDecoration: "none" }}>
+						<li>
+							<span>Try</span>
+						</li>
+					</Link>
 					<Link to="/ooredoo" style={{ textDecoration: "none" }}>
 						<li>
 							<span>Ooredoo</span>

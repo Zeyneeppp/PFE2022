@@ -49,6 +49,7 @@ function DatabaseTable() {
 			valueGetter: (params) => params.data.WILAYA.NOM_WILAYA,
 		},
 		{ field: "DESIGNATION_STRUCTURE" },
+		{ field: "TYPE", valueGetter: (params) => params.data.LIAISON[0].TYPE },
 		{
 			field: "NUM_LIGNE_ADSL",
 			valueGetter: (params) => {
@@ -112,7 +113,7 @@ function DatabaseTable() {
 				var i = 0;
 				while (i < dataConst.LIAISON.length) {
 					if (strCompare(dataConst.LIAISON[i].TYPE, "ADSL") == true) {
-						return dataConst.LIAISON[i].ABONNEMENT.DATE_ACTIVATION;
+						return dataConst.LIAISON[i].DATE_ACTIVATION;
 					}
 					i++;
 				}
@@ -126,7 +127,7 @@ function DatabaseTable() {
 				var i = 0;
 				while (i < dataConst.LIAISON.length) {
 					if (strCompare(dataConst.LIAISON[i].TYPE, "ADSL") == true) {
-						return dataConst.LIAISON[i].ABONNEMENT.DATE_EXPIRATION;
+						return dataConst.LIAISON[i].DATE_EXPIRATION;
 					}
 					i++;
 				}

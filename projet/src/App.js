@@ -12,9 +12,10 @@ import "./pages/login/Form_Style/signin.scss";
 import DatabaseTable from "./pages/databasePage/DatabaseTable";
 import "./pages/databasePage/datatable.css";
 import SignIn from "./pages/login/Form_Style/SignIn";
-import Data from "./Data";
+
 import Mobilis from "./pages/databasePage/Mobilis";
 import Ooredoo from "./pages/databasePage/Ooredoo";
+import TryTable from "./pages/databasePage/TryTable";
 
 function App() {
 	return (
@@ -30,6 +31,7 @@ function App() {
 							<Route exact path=":userID" element={<Single />} />
 						</Route>
 						<Route exact path="database" element={<DatabaseTable />} />
+						<Route exact path="try" element={<TryTable />} />
 						<Route exact path="mobilis" element={<Mobilis />} />
 						<Route exact path="ooredoo" element={<Ooredoo />} />
 						<Route exact path="Branches">

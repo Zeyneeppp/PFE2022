@@ -10,41 +10,36 @@ import Paper from "@mui/material/Paper";
 const List = () => {
   const rows = [
     {
-      id: 1143155,
-      product: "Acer Nitro 5",
-      customer: "John Smith",
-      date: "1 March",
-      amount: 785,
-      method: "Cash on Delivery",
-      status: "Approved",
+      id: "DG-16-0002",
+      Site: "CENTRE DE FORMATION EL KHROUB (CFK)",
+      Network: "Ooredoo",
+      Débit: "20",
+      Ligne: 541365275,
+      status: "Active",
     },
     {
       id: 2235235,
-      product: "Playstation 5",
-      
-      customer: "Michael Doe",
-      date: "1 March",
-      amount: 900,
-      method: "Online Payment",
-      status: "Pending",
+      Site: "SIEGE DISTRICT BLIDA",
+      Network: "Mobilis",
+      Débit: "30",
+      Ligne: 642565565,
+      status: "Active",
     },
     {
       id: 2342353,
-      product: "Redragon S101",
-      customer: "John Smith",
-      date: "1 March",
-      amount: 35,
-      method: "Cash on Delivery",
-      status: "Pending",
+      Site: "CENTRE MARINE ANNABA",
+      Network: "Adsl",
+      Débit: "10",
+      Ligne: 21345658547,
+      status: "Expiré",
     },
     {
-      id: 2357741,
-      product: "Razer Blade 15",
-      customer: "Jane Smith",
-      date: "1 March",
-      amount: 920,
-      method: "Online",
-      status: "Approved",
+      id: "CBR-16-0004",
+      Site: "CM Alger",
+      Network: "Adsl",
+      Débit: "10",
+      Ligne: 21315150616,
+      status: "A_renouvlé",
     },
    
   ];
@@ -53,12 +48,11 @@ const List = () => {
       <Table sx={{ minWidth: 100 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className="tableCell">Tracking ID</TableCell>
-            <TableCell className="tableCell">Product</TableCell>
-            <TableCell className="tableCell">Customer</TableCell>
-            <TableCell className="tableCell">Date</TableCell>
-            <TableCell className="tableCell">Amount</TableCell>
-            <TableCell className="tableCell">Payment Method</TableCell>
+            <TableCell className="tableCell">Code Site</TableCell>
+            <TableCell className="tableCell">Site</TableCell>
+            <TableCell className="tableCell">Network</TableCell>
+            <TableCell className="tableCell">Débit</TableCell>
+            <TableCell className="tableCell">Ligne</TableCell>
             <TableCell className="tableCell">Status</TableCell>
           </TableRow>
         </TableHead>
@@ -66,16 +60,10 @@ const List = () => {
           {rows.map((row) => (
             <TableRow key={row.id}>
               <TableCell className="tableCell">{row.id}</TableCell>
-              <TableCell className="tableCell">
-                <div className="cellWrapper">
-                {/* <img src={row.img} alt="" className="image" /> ki nsh9o photo*/ }
-                  {row.product}
-                </div>
-              </TableCell>
-              <TableCell className="tableCell">{row.customer}</TableCell>
-              <TableCell className="tableCell">{row.date}</TableCell>
-              <TableCell className="tableCell">{row.amount}</TableCell>
-              <TableCell className="tableCell">{row.method}</TableCell>
+              <TableCell className="tableCell"> {row.Site}</TableCell>
+              <TableCell className="tableCell">{row.Network}</TableCell>
+              <TableCell className="tableCell">{row.Débit}</TableCell>
+              <TableCell className="tableCell">{row.Ligne}</TableCell>
               <TableCell className="tableCell">
                 <span className={`status ${row.status}`}>{row.status}</span>
               </TableCell>

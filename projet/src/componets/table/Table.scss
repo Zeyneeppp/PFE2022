@@ -17,13 +17,17 @@
       padding: 5px;
       border-radius: 5px;
   
-      &.Approved {
+      &.Active {
         color: green;
         background-color: rgba(0, 128, 0, 0.151);
       }
-      &.Pending {
-        color: goldenrod;
-        background-color: rgba(189, 189, 3, 0.103);
+      &.A_renouvlé{
+        color: rgb(78, 57, 3);
+        background-color: rgb(253, 196, 90);
+      }
+      &.Expiré{
+        color: rgb(151, 25, 3);
+        background-color: rgb(252, 80, 80);
       }
     }
   }

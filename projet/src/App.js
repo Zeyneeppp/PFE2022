@@ -10,12 +10,14 @@ import "./pages/login/Form_Style/login.css";
 import "./pages/login/Form_Style/login.css";
 import "./pages/login/Form_Style/signin.scss";
 import DatabaseTable from "./pages/databasePage/DatabaseTable";
-import "./pages/databasePage/datatable.css";
+import "./pages/databasePage/datatable.scss";
 import SignIn from "./pages/login/Form_Style/SignIn";
 
 import Mobilis from "./pages/databasePage/Mobilis";
 import Ooredoo from "./pages/databasePage/Ooredoo";
 import TryTable from "./pages/databasePage/TryTable";
+import Notifications  from "./pages/notifications/Notifications";
+
 
 function App() {
 	return (
@@ -33,6 +35,7 @@ function App() {
 						<Route exact path="database" element={<DatabaseTable />} />
 						<Route exact path="try" element={<TryTable />} />
 						<Route exact path="mobilis" element={<Mobilis />} />
+						<Route exact path="Notifications" element={<Notifications />} />
 						<Route exact path="ooredoo" element={<Ooredoo />} />
 						<Route exact path="Branches">
 							<Route index element={<List />} />

@@ -1,9 +1,5 @@
-<<<<<<< Updated upstream
-import React, { useCallback, useEffect, useRef, useState } from "react";
-=======
 import React, { useCallback, useRef,useEffect, useState } from "react";
->>>>>>> Stashed changes
-import { AgGridReact } from "ag-grid-react";
+ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { Button, Toolbar, Typography } from "@mui/material";
@@ -309,18 +305,20 @@ function DatabaseTable() {
 		},
 	]);
 	return (
-		<div>
+		<div className="pagetotale">
+			<Sidebar/>
 			<div
 				className="ag-theme-alpine"
 				style={{
-					height: "550px",
-					width: "92%",
-					padding: "50px",
+					flex:6,
+					width: "100%",
+					padding: "20px",
+					margin:"20px",
 				}}
 			>
 				<Toolbar>
 					<div className="titleDBTable">
-						Global Table
+						<h2>Global Table</h2>
 						<Button
 							size="large"
 							startIcon={<PrintIcon />}

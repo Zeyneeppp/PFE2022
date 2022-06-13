@@ -115,9 +115,9 @@ const UsersManager = () => {
 			<Sidebar/>
 			
 			<div className="datatable">
-			<Navbar />
+			
 				<div className="datatableTitle">
-					Users Manager
+					<h1>Users Manager</h1>
 				<Button
 					startIcon={<AddBoxIcon />}
 					size="Large"

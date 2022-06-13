@@ -74,18 +74,22 @@ function Mobilis() {
 		},
 	]);
 	return (
-		<div>
+		<div className="pagetotale">
+			<Sidebar/>
 			<div
 				className="ag-theme-alpine"
 				style={{
-					height: "500px",
-					width: "80%",
-					padding: "50px",
+					flex:6,
+					width: "100%",
+					padding: "20px",
+					margin:"20px",
 				}}
 			>
+				
 				<Toolbar>
 					<div className="titleDBTable">
-						Mobilis
+						<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/ATM_Mobilis.svg/1200px-ATM_Mobilis.svg.png"  className="imglogomobilis"/>
+						<h2>Mobilis</h2>
 						<Button
 							size="large"
 							startIcon={<PrintIcon />}

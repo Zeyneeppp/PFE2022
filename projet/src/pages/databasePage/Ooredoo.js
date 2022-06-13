@@ -106,20 +106,24 @@ function Ooredoo() {
 		},
 	]);
 	return (
-		<div>
+		<div className="pagetotale">
+			<Sidebar/>
 			<div
 				className="ag-theme-alpine"
 				style={{
-					height: "500px",
-					width: "80%",
-					padding: "50px",
+					flex:6,
+					width: "100%",
+					padding: "20px",
+					margin:"20px",
+		
 				}}
 			>
 				<Toolbar>
 					<div className="titleDBTable">
-						Ooredoo
+						< img src="https://upload.wikimedia.org/wikipedia/commons/b/b6/Ooredoo.svg" alt=" " className="imglogo" />
+						 <h2>Ooredoo</h2>
 						<Button
-							size="large"
+							 size="large"
 							startIcon={<PrintIcon />}
 							onClick={Export}
 						></Button>

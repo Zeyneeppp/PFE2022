@@ -1,0 +1,19 @@
+.pagetotale{
+    display: flex;
+    
+    .listContainer {
+        flex: 6;
+        width: 100%;
+		padding: 20px;
+		margin: 20px;
+  
+		.listTitle {
+		  font-weight: 500;
+		  color: gray;
+		  margin-bottom: 15px;
+          margin-left: 20px;
+	      display: flex;
+		  align-items: center;
+		}
+	  }
+}

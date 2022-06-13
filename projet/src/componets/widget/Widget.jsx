@@ -9,13 +9,13 @@ const Widget = ({ type }) => {
   let data;
 
   //temporary
-  const amount =50;
-  const diff = 20;
+
 
   switch (type) {
     case "user":
       data = {
         title: "Direction Génèrale",
+        amount : '32',
         isMoney: false,
         link: "See all sites",
         icon: (
@@ -32,6 +32,7 @@ const Widget = ({ type }) => {
     case "order":
       data = {
         title: "Commercialisation",
+        amount : '25',
         isMoney: false,
         link: "View all sites",
         icon: (
@@ -48,6 +49,7 @@ const Widget = ({ type }) => {
     case "earning":
       data = {
         title: "GPL",
+        amount :'18',
         isMoney: true,
         link: "View net sites",
         icon: (
@@ -60,7 +62,8 @@ const Widget = ({ type }) => {
       break;
     case "balance":
       data = {
-        title: "CBR",
+        title: "Carburants",
+        amount :'37',
         isMoney: true,
         link: "See details",
         icon: (
@@ -83,15 +86,12 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {amount}
+          {data.amount}
         </span>
         <span className="link">{data.link}</span>
       </div>
       <div className="right">
-        <div className="percentage positive">
-          <KeyboardArrowUpIcon />
-          {diff} 
-        </div>
+        
         {data.icon}
       </div>
     </div>

@@ -61,60 +61,68 @@ function DatabaseTable() {
 		console.log("Not yet I have to create a server first");
 	};
 
+	const handleDelete = () => {
+		const confirm = window.confirm(
+			"Are you sure, you want to delete this row ?"
+		);
+		console.log("Not yet I have to create a server first");
+
+		//setData(data.filter((item) => item.id !== id));
+	};
+	const handleUpdate = (data) => {
+		console.log(data);
+		setFormdata(data);
+		handleDialog();
+	};
+
 	//************************************** */
 	const [columnDefs] = useState([
 		{
 			field: "action",
 			width: 130,
-
+			filter: false,
 			cellRenderer: (params) => {
 				return (
 					<div className="cellAction">
 						<Button
 							startIcon={<Edit />}
-							// onClick={() => handleUpdate(params.row)}
+							onClick={() => handleUpdate(params.data)}
 						></Button>
 						<Button
 							startIcon={<Delete />}
 							sx={{
 								paddingRight: "100px",
 							}}
-							// onClick={() => handleDelete(params.value)}
+							onClick={() => handleDelete(params.value)}
 						></Button>
 					</div>
 				);
 			},
 		},
 		{ field: "CODE_SITE", width: 150 },
-		{ field: "DESIGNATION_STRUCTURE" },
-		{ field: "CODE_BR" },
+		{ field: "DESIGNATION_STRUCTURE", width: 220 },
+		{ field: "CODE_BR", width: 150 },
 		// { field: "CODE_WILAYA" },
 
 		{ field: "TYPE", valueGetter: (params) => params.data.LIAISON[0].TYPE },
 		{
-			field: "NUM_LIGNE_ADSL",
+			field: "NUM_LIGNE",
 			valueGetter: (params) => {
 				var dataConst = params.data;
 				var i = 0;
 				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "ADSL") == true) {
-						return dataConst.LIAISON[i].NUM_LIGNE;
-					}
-					i++;
+					return dataConst.LIAISON[i].NUM_LIGNE;
 				}
 				return "/";
 			},
 		},
 		{
-			field: "NS_MODEM_ADSL",
+			field: "NS_MODEM",
 			valueGetter: (params) => {
 				var dataConst = params.data;
 				var i = 0;
 				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "ADSL") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_MODEM;
-					}
-					i++;
+					return dataConst.LIAISON[i].EQUIPEMENT.NS_MODEM;
 				}
 				return "/";
 			},
@@ -369,10 +377,10 @@ function DatabaseTable() {
 				className="ag-theme-alpine"
 				style={{
 					flex: 6,
-					width: "70%",
+					width: "60%",
 					padding: "20px",
 					margin: "10px",
-					marginRight: "10px",
+					marginRight: "20px",
 					height: "600px",
 				}}
 			>

@@ -45,7 +45,7 @@ const UsersManager = () => {
 	}, []);
 
 	const userColumns = [
-		{ field: "id", headerName: "ID", width: 70 },
+		{ field: "Username", headerName: "Username", width: 100 },
 		// {
 		// 	field: "user",
 		// 	headerName: "User",
@@ -60,14 +60,24 @@ const UsersManager = () => {
 		// 	},
 		// },
 		{
-			field: "email",
+			field: "Email",
 			headerName: "Email",
+			width: 230,
+		},
+		{
+			field: "FirstName",
+			headerName: "FirstName",
+			width: 230,
+		},
+		{
+			field: "LastName",
+			headerName: "LastName",
 			width: 230,
 		},
 
 		{
-			field: "branche",
-			headerName: "Branche",
+			field: "Branch",
+			headerName: "Branch",
 			width: 100,
 		},
 		{

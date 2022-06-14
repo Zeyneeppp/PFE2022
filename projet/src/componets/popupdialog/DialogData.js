@@ -42,20 +42,23 @@ function DialogData(props) {
 	} = props;
 	const {
 		DESIGNATION_STRUCTURE,
-		Branche,
-		Type_Liaison,
-		Num_ligne,
+		CODE_BR,
+		TYPE,
+		NUM_LIGNE,
 		Date_act,
 		Date_exp,
 		NS_sim,
 		Adr_ip,
+		Imei_modem,
+		NSSIM,
+		Secteur,
 	} = formdata;
 
 	const names = ["Adsl", "Mobilis", "Ooredoo", "Vpn", "4gLTE"];
 	return (
 		<Dialog open={openPopup} onClose={handleClose}>
-			{/* {id ? "Update Data" : "Create Data"} */}
-			<DialogTitle>Create Data </DialogTitle>
+			{/* {Branche ? "Update Data" : "Create Data"} */}
+			<DialogTitle>{CODE_BR ? "Update Data" : "Create Data"} </DialogTitle>
 			<DialogContent>
 				<form>
 					<TextField
@@ -71,11 +74,11 @@ function DialogData(props) {
 					<TextField
 						id="Br"
 						placeholder="...."
-						label="Branche"
+						label="CODE_BR"
 						fullWidth
 						variant="outlined"
 						margin="dense"
-						value={Branche}
+						value={CODE_BR}
 						onChange={(e) => onChange(e)}
 					/>
 					{/* <FormControl sx={{ m: 1, width: 300 }}>
@@ -110,21 +113,21 @@ function DialogData(props) {
 					<TextField
 						id="Liaison"
 						placeholder="...."
-						label="Type_Liaison"
+						label="TYPE"
 						fullWidth
 						variant="outlined"
 						margin="dense"
-						value={Type_Liaison}
+						value={TYPE}
 						onChange={(e) => onChange(e)}
 					/>
 					<TextField
 						id="ligneN"
 						placeholder="...."
-						label="Num_ligne"
+						label="NUM_LIGNE"
 						fullWidth
 						variant="outlined"
 						margin="dense"
-						value={Num_ligne}
+						value={NUM_LIGNE}
 						onChange={(e) => onChange(e)}
 					/>
 					<TextField
@@ -137,16 +140,7 @@ function DialogData(props) {
 						value={Date_act}
 						onChange={(e) => onChange(e)}
 					/>
-					<TextField
-						id="Liaison"
-						placeholder="...."
-						label="Type_Liaison"
-						fullWidth
-						variant="outlined"
-						margin="dense"
-						value={Type_Liaison}
-						onChange={(e) => onChange(e)}
-					/>
+
 					<TextField
 						id="Date_exp"
 						placeholder="...."
@@ -177,6 +171,36 @@ function DialogData(props) {
 						value={Adr_ip}
 						onChange={(e) => onChange(e)}
 					/>
+					<TextField
+						id="Imei"
+						placeholder="...."
+						label="Imei_modem"
+						fullWidth
+						variant="outlined"
+						margin="dense"
+						value={Imei_modem}
+						onChange={(e) => onChange(e)}
+					/>
+					<TextField
+						id="NSSIM"
+						placeholder="...."
+						label="Imei_modem"
+						fullWidth
+						variant="outlined"
+						margin="dense"
+						value={NSSIM}
+						onChange={(e) => onChange(e)}
+					/>
+					<TextField
+						id="Imei"
+						placeholder="...."
+						label="Secteur"
+						fullWidth
+						variant="outlined"
+						margin="dense"
+						value={Secteur}
+						onChange={(e) => onChange(e)}
+					/>
 				</form>
 			</DialogContent>
 			<DialogActions>
@@ -189,8 +213,7 @@ function DialogData(props) {
 					onClick={() => handleFormSubmit()}
 					autoFocus
 				>
-					{/* {id ? "Update" : "Submit"} */}
-					Create
+					{CODE_BR ? "Update" : "Submit"}
 				</Button>
 			</DialogActions>
 		</Dialog>

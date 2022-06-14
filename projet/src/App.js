@@ -18,7 +18,6 @@ import Ooredoo from "./pages/databasePage/Ooredoo";
 import TryTable from "./pages/databasePage/TryTable";
 import Notifications from "./pages/notifications/Notifications";
 import DataTableG from "./pages/databasePage/DataTableG";
-import Notifications from "./pages/notifications/Notifications";
 import Profile from "./componets/userprofile/Profile";
 
 function App() {

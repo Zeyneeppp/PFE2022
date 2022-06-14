@@ -1,17 +1,27 @@
 //temporary data
 export const userRows = [
 	{
-		id: 1,
-		username: "user1",
-		img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-		email: "1user@gmail.com",
-		branche: "GPL",
+		id: "1",
+		Username: "Mohamed",
+		Email: "Mohammed53@gmail.com",
+		FirstName: "Mohammed",
+		LastName: "Nidal",
+		Branch: "GPL",
 	},
 	{
-		id: 2,
-		username: "user2",
-		img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-		email: "2user@gmail.com",
-		branche: "COM",
+		id: "2",
+		Username: "Zineb06",
+		Email: "SadZineb11@gmail.com",
+		FirstName: "Zineb",
+		LastName: "Sad",
+		Branch: "Com",
+	},
+	{
+		id: "3",
+		Username: "Soum_21",
+		Email: "Ndr_Ust@gmail.com",
+		FirstName: "Soumia",
+		LastName: "Ndr",
+		Branch: "DG",
 	},
 ];

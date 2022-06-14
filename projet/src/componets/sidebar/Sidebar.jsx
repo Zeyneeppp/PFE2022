@@ -2,6 +2,11 @@ import React from "react";
 import "./Sidebar.scss";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
+import React from "react";
+import "./Sidebar.scss";
+import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
 import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNoneOutlined";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
@@ -27,6 +32,15 @@ function Sidebar() {
 						NETWORK MANAGER
 						<p className="sous_title"> Dashboard et Widgets</p>
 					</p>
+					<Link to="/Profile" style={{ textDecoration: "none" }}>
+						<li>
+							<AccountCircleOutlinedIcon
+								className="icon"
+								style={{ textDecoration: "none" }}
+							/>
+							<span>User Profile</span>
+						</li>
+					</Link>
 					<Link to="/home" style={{ textDecoration: "none" }}>
 						<li>
 							<DashboardOutlinedIcon
@@ -56,7 +70,12 @@ function Sidebar() {
 							<span>Users</span>
 						</li>
 					</Link>
-
+					<Link to="/users" style={{ textDecoration: "none" }}>
+						<li>
+							<QueryStatsIcon className="icon" />
+							<span>Statiqtique</span>
+						</li>
+					</Link>
 					<Link to="/" style={{ textDecoration: "none" }}>
 						{/* <li>
                         <SettingsOutlinedIcon className='icon'/>

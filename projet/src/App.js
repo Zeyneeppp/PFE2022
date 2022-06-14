@@ -18,6 +18,8 @@ import Ooredoo from "./pages/databasePage/Ooredoo";
 import TryTable from "./pages/databasePage/TryTable";
 import Notifications from "./pages/notifications/Notifications";
 import DataTableG from "./pages/databasePage/DataTableG";
+import Notifications from "./pages/notifications/Notifications";
+import Profile from "./componets/userprofile/Profile";
 
 function App() {
 	return (
@@ -38,6 +40,7 @@ function App() {
 						<Route exact path="mobilis" element={<Mobilis />} />
 						<Route exact path="Notifications" element={<Notifications />} />
 						<Route exact path="ooredoo" element={<Ooredoo />} />
+
 						<Route exact path="Branches">
 							<Route index element={<List />} />
 							<Route exact path=":brancheId" element={<Single />} />

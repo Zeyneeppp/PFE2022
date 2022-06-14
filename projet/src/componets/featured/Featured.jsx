@@ -9,7 +9,7 @@ const Featured = () => {
 	return (
 		<div className="featured">
 			<div className="top">
-				<h1 className="title">Total</h1>
+				<h1 className="title">ADSL</h1>
 				{/* <MoreVertIcon fontSize="small" /> */}
 			</div>
 			<div className="bottom">
@@ -18,7 +18,7 @@ const Featured = () => {
 				</div>
 				<p className="title">Total abonnements ADSL </p>
 				<p className="amount">420</p>
-				<p className="desc"></p>
+				<p className="desc">commentaire.</p>
 				<div className="summary">
 					<div className="item">
 						<div className="itemTitle">Non renouvlé</div>
@@ -34,13 +34,6 @@ const Featured = () => {
 							<div className="resultAmount">348</div>
 						</div>
 					</div>
-					{/* <div className="item">
-            <div className="itemTitle">Last Month</div>
-            <div className="itemResult positive">
-              <KeyboardArrowUpOutlinedIcon fontSize="small"/>
-              <div className="resultAmount">chiffre</div>
-            </div>
-          </div> */}
 				</div>
 			</div>
 		</div>

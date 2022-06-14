@@ -18,7 +18,7 @@ const List = () => {
       status: "Active",
     },
     {
-      id: 2235235,
+      id: "CBR-9-0009",
       Site: "SIEGE DISTRICT BLIDA",
       Network: "Mobilis",
       Débit: "30",
@@ -26,7 +26,7 @@ const List = () => {
       status: "Active",
     },
     {
-      id: 2342353,
+      id: "CBR-23-0007",
       Site: "CENTRE MARINE ANNABA",
       Network: "Adsl",
       Débit: "10",

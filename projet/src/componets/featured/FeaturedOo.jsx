@@ -14,7 +14,7 @@ const Featured = () => {
       </div>
       <div className="bottom">
         <div className="featuredChart">
-          <CircularProgressbar value={55} text={"55%"} strokeWidth={5} />
+          <CircularProgressbar value={26} text={"26%"} strokeWidth={5} />
         </div>
         <p className="title">Total abonnements Ooredoo </p>
         <p className="amount">180</p>

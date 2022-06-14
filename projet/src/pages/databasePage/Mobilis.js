@@ -99,9 +99,11 @@ function Mobilis() {
 				className="ag-theme-alpine"
 				style={{
 					flex: 6,
-					width: "100%",
+					width: "60%",
 					padding: "20px",
-					margin: "30px",
+					margin: "10px",
+					marginRight: "50px",
+					height: "600px",
 				}}
 			>
 				<Toolbar>

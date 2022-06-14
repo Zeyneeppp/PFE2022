@@ -18,7 +18,7 @@ const Featured = () => {
 				</div>
 				<p className="title">Total abonnements ADSL </p>
 				<p className="amount">420</p>
-				<p className="desc">commentaire.</p>
+
 				<div className="summary">
 					<div className="item">
 						<div className="itemTitle">Non renouvlé</div>

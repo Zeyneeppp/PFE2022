@@ -19,7 +19,7 @@ function DialogUsers(props) {
 		handleFormSubmit,
 		handleClose,
 	} = props;
-	const { id, username, email, branche } = formdata;
+	const { id, Username, Email, FirstName, LastName, Branch } = formdata;
 	return (
 		<Dialog open={openPopup} onClose={handleClose}>
 			<DialogTitle>{id ? "Update user" : "Create user"} </DialogTitle>
@@ -32,7 +32,7 @@ function DialogUsers(props) {
 						fullWidth
 						variant="outlined"
 						margin="dense"
-						value={username}
+						value={Username}
 						onChange={(e) => onChange(e)}
 					/>
 					<TextField
@@ -42,17 +42,37 @@ function DialogUsers(props) {
 						fullWidth
 						variant="outlined"
 						margin="dense"
-						value={email}
+						value={Email}
 						onChange={(e) => onChange(e)}
 					/>
 					<TextField
-						id="branche"
+						id="FirstName"
 						placeholder="Enter branche"
-						label="Branche"
+						label="FirstName"
 						fullWidth
 						variant="outlined"
 						margin="dense"
-						value={branche}
+						value={FirstName}
+						onChange={(e) => onChange(e)}
+					/>
+					<TextField
+						id="LastName"
+						placeholder="Enter branche"
+						label="LastName"
+						fullWidth
+						variant="outlined"
+						margin="dense"
+						value={LastName}
+						onChange={(e) => onChange(e)}
+					/>
+					<TextField
+						id="Branch"
+						placeholder="Enter branche"
+						label="Branch"
+						fullWidth
+						variant="outlined"
+						margin="dense"
+						value={Branch}
 						onChange={(e) => onChange(e)}
 					/>
 				</form>

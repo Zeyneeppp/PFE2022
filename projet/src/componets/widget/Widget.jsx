@@ -17,15 +17,6 @@ const Widget = ({ type }) => {
 				amount: "32",
 				isMoney: false,
 				link: "See all sites",
-				icon: (
-					<PersonOutlinedIcon
-						className="icon"
-						style={{
-							color: "crimson",
-							backgroundColor: "rgba(255, 0, 0, 0.2)",
-						}}
-					/>
-				),
 			};
 			break;
 		case "order":
@@ -34,15 +25,6 @@ const Widget = ({ type }) => {
 				amount: "25",
 				isMoney: false,
 				link: "View all sites",
-				icon: (
-					<ShoppingCartOutlinedIcon
-						className="icon"
-						style={{
-							backgroundColor: "rgba(218, 165, 32, 0.2)",
-							color: "goldenrod",
-						}}
-					/>
-				),
 			};
 			break;
 		case "earning":
@@ -51,12 +33,6 @@ const Widget = ({ type }) => {
 				amount: "18",
 				isMoney: true,
 				link: "View net sites",
-				icon: (
-					<MonetizationOnOutlinedIcon
-						className="icon"
-						style={{ backgroundColor: "rgba(0, 128, 0, 0.2)", color: "green" }}
-					/>
-				),
 			};
 			break;
 		case "balance":
@@ -64,16 +40,7 @@ const Widget = ({ type }) => {
 				title: "Carburants",
 				amount: "37",
 				isMoney: true,
-				link: "See details",
-				icon: (
-					<AccountBalanceWalletOutlinedIcon
-						className="icon"
-						style={{
-							backgroundColor: "rgba(128, 0, 128, 0.2)",
-							color: "purple",
-						}}
-					/>
-				),
+				link: "View net sites",
 			};
 			break;
 		default:

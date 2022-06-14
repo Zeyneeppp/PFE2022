@@ -48,10 +48,6 @@ function Sidebar() {
 							</li>
 						</Link>
 					</Link>
-					<p className="title">
-						Main
-						<p className="sous_title"> les application</p>
-					</p>
 					<Link to="/users" style={{ textDecoration: "none" }}>
 						<li>
 							<GroupOutlinedIcon className="icon" />
@@ -84,7 +80,7 @@ function Sidebar() {
                         <span>GPL</span>
                     </li>
                 </Link> */}
-					<p className="title">Liaisons</p>
+					<p className="title">NETWORK</p>
 
 					<Link to="/database" style={{ textDecoration: "none" }}>
 						<li>

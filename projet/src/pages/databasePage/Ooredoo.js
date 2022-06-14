@@ -96,9 +96,11 @@ function Ooredoo() {
 				className="ag-theme-alpine"
 				style={{
 					flex: 6,
-					width: "100%",
+					width: "60%",
 					padding: "20px",
-					margin: "30px",
+					margin: "10px",
+					marginRight: "50px",
+					height: "600px",
 				}}
 			>
 				<Toolbar>
@@ -135,7 +137,6 @@ function Ooredoo() {
 					columnDefs={columnDefs}
 					defaultColDef={ManipulationData}
 					pagination={true}
-					paginationPageSize={8}
 					paginationAutoPageSize={true}
 				></AgGridReact>
 			</div>

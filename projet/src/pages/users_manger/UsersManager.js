@@ -20,28 +20,45 @@ import DialogUsers from "../../componets/popupdialog/DialogUsers";
 import DataService from "./DataService";
 import axios from "../../Api/axios";
 import "../login/Form_Style/signin.scss";
+import { useEffect } from "react";
 
 const UsersManager = () => {
 	const initialValue = { username: "", email: "", branche: "" };
 	const [dataTable, setDataTable] = useState(userRows);
 	const [openPopup, setOpenPopup] = useState(false);
 	const [formdata, setFormdata] = useState(initialValue);
+	const [dataUsers, setDataUsers] = useState([]);
+
+	useEffect(() => {
+		const getDataBD = async () => {
+			try {
+				const res = await fetch("http://localhost:8080/api/allUsers");
+				const getData = await res.json();
+				// Object.assign({}, getData);
+				setDataUsers(getData);
+				console.log(dataUsers);
+			} catch (e) {
+				console.log(e);
+			}
+		};
+		getDataBD();
+	}, []);
 
 	const userColumns = [
 		{ field: "id", headerName: "ID", width: 70 },
-		{
-			field: "user",
-			headerName: "User",
-			width: 230,
-			renderCell: (params) => {
-				return (
-					<div className="cellWithImg">
-						<img className="cellImg" src={params.row.img} alt="avatar" />
-						{params.row.username}
-					</div>
-				);
-			},
-		},
+		// {
+		// 	field: "user",
+		// 	headerName: "User",
+		// 	width: 230,
+		// 	renderCell: (params) => {
+		// 		return (
+		// 			<div className="cellWithImg">
+		// 				<img src={params.row.img} alt="avatar" />
+		// 				{params.row.username}
+		// 			</div>
+		// 		);
+		// 	},
+		// },
 		{
 			field: "email",
 			headerName: "Email",
@@ -60,7 +77,6 @@ const UsersManager = () => {
 			renderCell: (params) => {
 				return (
 					<div className="cellAction">
-						
 						<Button
 							startIcon={<Edit />}
 							onClick={() => handleUpdate(params.row)}
@@ -112,38 +128,36 @@ const UsersManager = () => {
 
 	return (
 		<div className="pagetotale">
-			<Sidebar/>
-			
+			<Sidebar />
+
 			<div className="datatable">
-			
 				<div className="datatableTitle">
 					<h1>Users Manager</h1>
-				<Button
-					startIcon={<AddBoxIcon />}
-					size="Large"
-					onClick={handleDialog}
-				></Button>
-			</div>
+					<Button
+						startIcon={<AddBoxIcon />}
+						size="Large"
+						onClick={handleDialog}
+					></Button>
+				</div>
 
-			<DataGrid
-				className="datagrid"
-				rows={dataTable}
-				columns={userColumns}
-				pageSize={9}
-				rowsPerPageOptions={[9]}
-				checkboxSelection
-			/>
-			<DialogUsers
-				openPopup={openPopup}
-				setOpenPopup={setOpenPopup}
-				dataform={formdata}
-				onChange={onChange}
-				handleClose={handleClose}
-				handleFormSubmit={handleFormSubmit}
-			/>
+				<DataGrid
+					className="datagrid"
+					rows={dataTable}
+					columns={userColumns}
+					pageSize={9}
+					rowsPerPageOptions={[9]}
+					checkboxSelection
+				/>
+				<DialogUsers
+					openPopup={openPopup}
+					setOpenPopup={setOpenPopup}
+					formdata={formdata}
+					onChange={onChange}
+					handleClose={handleClose}
+					handleFormSubmit={handleFormSubmit}
+				/>
+			</div>
 		</div>
-		</div>
-		
 	);
 };
 

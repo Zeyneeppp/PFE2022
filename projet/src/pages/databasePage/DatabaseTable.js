@@ -1,15 +1,21 @@
-import React, { useCallback, useRef,useEffect, useState } from "react";
- import { AgGridReact } from "ag-grid-react";
+import React, { useCallback, useRef, useEffect, useState } from "react";
+import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-import { Button, Toolbar, Typography } from "@mui/material";
+import { Box, Button, Toolbar, Typography } from "@mui/material";
 import PrintIcon from "@mui/icons-material/Print";
 import Sidebar from "../../componets/sidebar/Sidebar";
 import Navbar from "../../componets/navbar/Navbar";
 import AddBoxIcon from "@mui/icons-material/Add";
-
+import DialogData from "../../componets/popupdialog/DialogData";
+import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
+import { Delete, Edit } from "@mui/icons-material";
 function DatabaseTable() {
 	const gridRef = useRef();
+	const [gridApi, setGridApi] = useState(null);
+	const [gridColumnApi, setGridColumnApi] = useState(null);
+	const [openPopup, setOpenPopup] = useState(false);
+	const [formdata, setFormdata] = useState("");
 	const [dataBD, setDataBD] = useState([]);
 	useEffect(() => {
 		const getDataBD = async () => {
@@ -39,16 +45,51 @@ function DatabaseTable() {
 	const Export = useCallback(() => {
 		gridRef.current.api.exportDataAsCsv();
 	}, []);
+	//*****************HANDLE DIALOG********** */
+	const onChange = (e) => {
+		const { value, id } = e.target;
+		setFormdata({ ...formdata, [id]: value });
+	};
+	const handleDialog = () => {
+		setOpenPopup(true);
+	};
+	const handleClose = () => {
+		setOpenPopup(false);
+		setFormdata("");
+	};
+	const handleFormSubmit = () => {
+		console.log("Not yet I have to create a server first");
+	};
 
+	//************************************** */
 	const [columnDefs] = useState([
-		{ field: "CODE_SITE" },
+		{
+			field: "action",
+			width: 130,
+
+			cellRenderer: (params) => {
+				return (
+					<div className="cellAction">
+						<Button
+							startIcon={<Edit />}
+							// onClick={() => handleUpdate(params.row)}
+						></Button>
+						<Button
+							startIcon={<Delete />}
+							sx={{
+								paddingRight: "100px",
+							}}
+							// onClick={() => handleDelete(params.value)}
+						></Button>
+					</div>
+				);
+			},
+		},
+		{ field: "CODE_SITE", width: 150 },
+		{ field: "DESIGNATION_STRUCTURE" },
 		{ field: "CODE_BR" },
 		// { field: "CODE_WILAYA" },
-		{
-			field: "NOM_WILAYA",
-			valueGetter: (params) => params.data.WILAYA.NOM_WILAYA,
-		},
-		{ field: "DESIGNATION_STRUCTURE" },
+
 		{ field: "TYPE", valueGetter: (params) => params.data.LIAISON[0].TYPE },
 		{
 			field: "NUM_LIGNE_ADSL",
@@ -304,39 +345,81 @@ function DatabaseTable() {
 			},
 		},
 	]);
+
+	const searchDivStyle = { padding: 10 };
+	const searchStyle = {
+		width: "90%",
+		padding: "10px 20px",
+		borderRadius: 20,
+		outline: 0,
+		border: "1px gray solid",
+		fontSize: "60%",
+	};
+	function onGridReady(params) {
+		setGridApi(params.api);
+		setGridColumnApi(params.columnApi);
+	}
+	const onFilterTextChange = (e) => {
+		gridApi.setQuickFilter(e.target.value);
+	};
 	return (
 		<div className="pagetotale">
-			<Sidebar/>
+			<Sidebar />
 			<div
 				className="ag-theme-alpine"
 				style={{
-					flex:6,
-					width: "100%",
+					flex: 6,
+					width: "70%",
 					padding: "20px",
-					margin:"20px",
+					margin: "10px",
+					marginRight: "10px",
+					height: "600px",
 				}}
 			>
 				<Toolbar>
 					<div className="titleDBTable">
 						<h2>Global Table</h2>
-						<Button
-							size="large"
-							startIcon={<PrintIcon />}
-							onClick={Export}
-						></Button>
-						{/* <Button
-							size="large"
-							startIcon={<AddBoxIcon />}
-							onClick={Export}
-						></Button> */}
+						<Box ml={63} sx={{ display: "flex" }}>
+							<div style={searchDivStyle}>
+								<input
+									type="search"
+									style={searchStyle}
+									onChange={onFilterTextChange}
+									placeholder="Search ..."
+								/>
+							</div>
+							<Box ml={0} pl={0} sx={{ display: "flex" }}>
+								<Button
+									size="large"
+									startIcon={<CloudDownloadIcon />}
+									onClick={Export}
+								></Button>
+								<Button
+									startIcon={<AddBoxIcon />}
+									size="Large"
+									onClick={handleDialog}
+								></Button>
+							</Box>
+						</Box>
 					</div>
 				</Toolbar>
 				<AgGridReact
+					onGridReady={onGridReady}
 					ref={gridRef}
 					rowData={dataBD}
 					columnDefs={columnDefs}
 					defaultColDef={ManipulationData}
+					pagination={true}
+					paginationAutoPageSize={true}
 				></AgGridReact>
+				<DialogData
+					openPopup={openPopup}
+					setOpenPopup={setOpenPopup}
+					formdata={formdata}
+					onChange={onChange}
+					handleClose={handleClose}
+					handleFormSubmit={handleFormSubmit}
+				/>
 			</div>
 		</div>
 	);

@@ -1,28 +1,35 @@
-.pagetotale{
+.pagetotale {
 	display: flex;
-	
-	.imglogo{
+
+	.imglogo {
 		width: 40px;
 		margin-right: 10px;
 	}
-	.imglogomobilis{
+
+	.imglogomobilis {
 		width: 70px;
 		margin-right: 10px;
 	}
 	.titleDBTable {
-		width: 100%; 
+		width: 100%;
 		font-size: 24px;
-		color: gray;
+
+		color: rgb(40, 52, 124);
 		margin-bottom: 10px;
 		// margin-left: 10px;
 		display: flex;
 		align-items: center;
-		
 	}
-	
+	.leftsideBar {
+		display: flex;
+		margin-left: 550px;
+	}
 }
-
-	
-	
-
-
+.styletable {
+	flex: 6;
+	width: 70%;
+	padding: 20px;
+	margin: 10px;
+	height: 600px;
+	margin-right: 10px;
+}

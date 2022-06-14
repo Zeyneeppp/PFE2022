@@ -16,8 +16,8 @@ import SignIn from "./pages/login/Form_Style/SignIn";
 import Mobilis from "./pages/databasePage/Mobilis";
 import Ooredoo from "./pages/databasePage/Ooredoo";
 import TryTable from "./pages/databasePage/TryTable";
-import Notifications  from "./pages/notifications/Notifications";
-
+import Notifications from "./pages/notifications/Notifications";
+import DataTableG from "./pages/databasePage/DataTableG";
 
 function App() {
 	return (
@@ -32,6 +32,7 @@ function App() {
 							<Route exact path="new" element={<New />} />
 							<Route exact path=":userID" element={<Single />} />
 						</Route>
+						<Route exact path="global" element={<DataTableG />} />
 						<Route exact path="database" element={<DatabaseTable />} />
 						<Route exact path="try" element={<TryTable />} />
 						<Route exact path="mobilis" element={<Mobilis />} />

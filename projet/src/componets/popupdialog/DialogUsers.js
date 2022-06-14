@@ -14,12 +14,12 @@ function DialogUsers(props) {
 		setOpenPopup,
 		children,
 		title,
-		dataform,
+		formdata,
 		onChange,
 		handleFormSubmit,
 		handleClose,
 	} = props;
-	const { id, username, email, branche } = dataform;
+	const { id, username, email, branche } = formdata;
 	return (
 		<Dialog open={openPopup} onClose={handleClose}>
 			<DialogTitle>{id ? "Update user" : "Create user"} </DialogTitle>

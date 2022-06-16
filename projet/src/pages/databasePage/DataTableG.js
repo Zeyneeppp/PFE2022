@@ -30,9 +30,6 @@ export default function DataTableG() {
 			name: "WILAYA.NOM_WILAYA",
 			options: {
 				customBodyRender: (value) => {
-					// dataBD.map((val) => {
-					// 	if (val.WILAYA === "NOM_WILAYA") return <Chip label={val} />;
-					// });
 					dataBD.map((getdata) => {
 						console.log(getdata.WILAYA.NOM_WILAYA);
 						return <Chip value={getdata.WILAYA.NOM_WILAYA} />;

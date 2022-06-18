@@ -7,10 +7,10 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useState } from "react";
 
-function Sidebar() {
+function SidebarVisitor() {
 	return (
 		<div className="sidebar">
 			<div className="top">
@@ -29,7 +29,6 @@ function Sidebar() {
 						NETWORK MANAGER
 						<p className="sous_title"> Dashboard et Widgets</p>
 					</p>
-
 					<Link to="/home" style={{ textDecoration: "none" }}>
 						<li>
 							<DashboardOutlinedIcon
@@ -38,32 +37,13 @@ function Sidebar() {
 							/>
 							<span>Dashboard</span>
 						</li>
-
-						<Link to="/Notifications" style={{ textDecoration: "none" }}>
-							<li>
-								<NotificationsNoneOutlinedIcon
-									className="icon"
-									style={{ textDecoration: "none" }}
-								/>
-								<span>Notifications</span>
-								{/* <div className="counter">1</div> */}
-							</li>
-						</Link>
 					</Link>
-					<Link to="/users" style={{ textDecoration: "none" }}>
-						<li>
-							<GroupOutlinedIcon className="icon" />
-							<span>Users</span>
-						</li>
-					</Link>
-
-					<Link to="/" style={{ textDecoration: "none" }}>
+					{/* <Link to="/" style={{ textDecoration: "none" }}>
 						{/* <li>
                         <SettingsOutlinedIcon className='icon'/>
                         <span>Settings</span>
                     </li> */}
-					</Link>
-
+					{/* </Link> */}
 					{/* <p className='title'>Branches
                 <p className='sous_title'> Les branches</p>
                 </p>
@@ -83,13 +63,11 @@ function Sidebar() {
                     </li>
                 </Link> */}
 					<p className="title">NETWORK</p>
-
-					<Link to="/database" style={{ textDecoration: "none" }}>
+					{/* <Link to="/database" style={{ textDecoration: "none" }}>
 						<li>
 							<span>Global Data</span>
 						</li>
-					</Link>
-
+					</Link> */}
 					<Link to="/ooredoo" style={{ textDecoration: "none" }}>
 						<li>
 							<span>Ooredoo</span>
@@ -100,6 +78,7 @@ function Sidebar() {
 							<span>Mobilis</span>
 						</li>
 					</Link>
+
 					<Link to="/ooredoo" style={{ textDecoration: "none" }}>
 						<li>
 							<span>ADSL</span>
@@ -141,4 +120,4 @@ function Sidebar() {
 	);
 }
 
-export default Sidebar;
+export default SidebarVisitor;

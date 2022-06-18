@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
 import axios from "../../../Api/axios";
 
-import AuthContext from "../ContextApi/AuthProvider";
+import AuthContext from "../../../context/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
 //path to login in the server
 const Log_path = "./auth";
 
 export default function Login() {
 	//--------------------------------------LOGIN'S DATA---------------------------------------------------------
-	const { setAuth } = useContext(AuthContext);
+	const { setAuth } = useAuth();
 	const userRef = useRef();
 	const errRef = useRef();
 
@@ -48,7 +49,7 @@ export default function Login() {
 			setPwd("");
 		} catch (err) {
 			if (!err?.response) {
-				setErr ("No Server Response");
+				setErr("No Server Response");
 			} else if (err.response?.status === 400) {
 				setErr("Missing Username or Password");
 			} else if (err.response?.status === 401) {

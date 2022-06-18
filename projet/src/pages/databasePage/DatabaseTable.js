@@ -104,7 +104,16 @@ function DatabaseTable() {
 		{ field: "CODE_BR", width: 150 },
 		// { field: "CODE_WILAYA" },
 
-		{ field: "TYPE", valueGetter: (params) => params.data.LIAISON[0].TYPE },
+		{
+			field: "TYPE",
+			valueGetter: (params) => {
+				var dataConst = params.data;
+				var i = 0;
+				while (i < dataConst.LIAISON.length) {
+					return dataConst.LIAISON[i].TYPE;
+				}
+			},
+		},
 		{
 			field: "NUM_LIGNE",
 			valueGetter: (params) => {

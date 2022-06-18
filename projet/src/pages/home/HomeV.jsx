@@ -8,12 +8,12 @@ import Featured4 from "../../componets/featured/Featured4";
 import FeaturedOo from "../../componets/featured/FeaturedOo";
 import Chart from "../../../src/componets/chart/Chart";
 import Table from "../../componets/table/Table";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Outlet } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import SidebarVisitor from "../../componets/sidebar/SidebarVisitor";
 
-const Home = () => {
+const HomeV = () => {
 	const { setAuth } = useContext(AuthContext);
 	const navigate = useNavigate();
 
@@ -28,10 +28,11 @@ const Home = () => {
 	// else {<SidebarVisitor />}
 	return (
 		<div className="home">
-			<Sidebar />
-			<div className="homeContainer">
+			<SidebarVisitor />
+			<Outlet />
+			{/* <div className="homeContainer">
 				{/* <Navbar /> */}
-				<div className="widgets">
+			{/* <div className="widgets">
 					<Widget type="user" />
 					<Widget type="order" />
 					<Widget type="earning" />
@@ -43,16 +44,16 @@ const Home = () => {
 					<Featured4 />
 
 					{/* <Chart title="Statistique d'abonnements" aspect={2/1} /> */}
-				</div>
+			{/*</div>
 				<div className="listContainer">
 					<div className="listTitle">
 						<h1>Notifications</h1>
 					</div>
 					<Table />
 				</div>
-			</div>
+			</div> */}
 		</div>
 	);
 };
 
-export default Home;
+export default HomeV;

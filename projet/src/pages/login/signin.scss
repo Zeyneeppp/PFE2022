@@ -42,7 +42,7 @@ body {
 	background-color: white;
 	// background-image: url("15409withlogo [Converted]-01.jpg");
 	background-size: cover;
-	background-image: url("15409 [Converted]3-01.jpg");
+	background-image: url("../../img/15409\ [Converted]3-01.jpg");
 	border-radius: 1rem;
 	margin: 2rem auto;
 	box-shadow: 0.5rem 0.5rem 2rem -0.5rem rgb(91, 89, 89);
@@ -66,4 +66,17 @@ body {
 }
 .buttontexte {
 	font-size: small;
+}
+
+.errmsg {
+	background-color: lightpink;
+	color: firebrick;
+	font-weight: bold;
+	padding: 0.5rem;
+	padding-left: 4rem;
+	padding-right: 4.5rem;
+	margin-bottom: 0.2rem;
+	position: absolute;
+	margin-left: 1.8rem;
+	margin-right: 1.8rem;
 }

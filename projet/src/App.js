@@ -22,6 +22,7 @@ import Unauthorized from "./componets/Unauth/Unauthorized";
 import Layout from "./componets/layout/Visitor";
 import useAuth from "./hooks/useAuth";
 import HomeV from "./pages/home/HomeV";
+import Admin from "./componets/layout/Admin";
 const ROLES = {
 	User: 2000,
 	Admin: 1000,
@@ -73,6 +74,15 @@ function App() {
 				element={
 					<RequireAuth allowedRoles={[ROLES.Admin]}>
 						<Notifications />
+					</RequireAuth>
+				}
+			/>
+
+			<Route
+				path="admin"
+				element={
+					<RequireAuth allowedRoles={[ROLES.User]}>
+						<Admin />
 					</RequireAuth>
 				}
 			/>

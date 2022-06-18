@@ -31,7 +31,7 @@ function SignIn() {
 	const navigate = useNavigate();
 	const location = useLocation();
 	//when the user want to go before send to the login page
-	const from = location.state?.from?.pathname || "/";
+	const from = location.state?.from?.pathname || "/home";
 	const userRef = useRef();
 	const errRef = useRef();
 	const [userName, setUserName] = useState("");
@@ -67,7 +67,8 @@ function SignIn() {
 			setAuth({ userName, pwd, roles, accessToken });
 			setUserName("");
 			setPwd("");
-			navigate("home");
+			// navigate("home");
+			navigate(from, { replace: true });
 		} catch (err) {
 			if (!err?.response) {
 				setErr("No Server Response");

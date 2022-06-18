@@ -11,8 +11,10 @@ const RequireAuth = ({ allowedRoles, children }) => {
 
 	console.log(allowedRoles.includes(auth.roles));
 	if (!auth) {
-		return <Navigate to="/login" state={{ from: location }} replace />;
+		return <Navigate to="/" state={{ from: location }} replace />;
 	}
+	// console.log("Can i SEE?", auth.roles, allowedRoles);
+	// console.log("Can i SEE?", auth && !userHasRequiredRole);
 	if (auth && !userHasRequiredRole) {
 		return <Navigate to="/unauthorized" state={{ from: location }} replace />;
 	}

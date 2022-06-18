@@ -57,13 +57,6 @@ function Sidebar() {
 						</li>
 					</Link>
 
-					<Link to="/" style={{ textDecoration: "none" }}>
-						{/* <li>
-                        <SettingsOutlinedIcon className='icon'/>
-                        <span>Settings</span>
-                    </li> */}
-					</Link>
-
 					{/* <p className='title'>Branches
                 <p className='sous_title'> Les branches</p>
                 </p>
@@ -89,7 +82,11 @@ function Sidebar() {
 							<span>Global Data</span>
 						</li>
 					</Link>
-
+					<Link to="/admin" style={{ textDecoration: "none" }}>
+						<li>
+							<span>Admin</span>
+						</li>
+					</Link>
 					<Link to="/ooredoo" style={{ textDecoration: "none" }}>
 						<li>
 							<span>Ooredoo</span>

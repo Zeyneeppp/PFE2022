@@ -1,12 +1,15 @@
-import { Outlet } from "react-router-dom";
-import Home from "../../pages/home/Home";
+import { Link } from "react-router-dom";
+import Users from "./Users";
 
-const Layout1 = () => {
+const Admin = () => {
 	return (
-		<div>
-			<Home />
-		</div>
+		<section>
+			<h1>Admins Page</h1>
+			<br />
+			<Users />
+			<br />
+		</section>
 	);
 };
 
-export default Layout1;
+export default Admin;

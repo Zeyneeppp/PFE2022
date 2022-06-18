@@ -18,7 +18,6 @@ import {
 
 import DialogUsers from "../../componets/popupdialog/DialogUsers";
 import DataService from "./DataService";
-import axios from "../../Api/axios";
 
 import { useEffect } from "react";
 
@@ -29,20 +28,51 @@ const UsersManager = () => {
 	const [formdata, setFormdata] = useState(initialValue);
 	const [dataUsers, setDataUsers] = useState([]);
 
-	useEffect(() => {
-		const getDataBD = async () => {
-			try {
-				const res = await fetch("http://localhost:8080/api/allUsers");
-				const getData = await res.json();
-				// Object.assign({}, getData);
-				setDataUsers(getData);
-				console.log(dataUsers);
-			} catch (e) {
-				console.log(e);
-			}
-		};
-		getDataBD();
-	}, []);
+	// useEffect(() => {
+	// 	let isMounted = true;
+	// 	const controller = new AbortController();
+
+	// 	const getUsers = async () => {
+	// 		try {
+	// 			const response = await axiosPrivate.get("api/users", {
+	// 				signal: controller.signal,
+	// 			});
+	// 			console.log(response.data);
+	// 			isMounted && setDataUsers(response.data);
+	// 		} catch (err) {
+	// 			console.error(err);
+	// 		}
+	// 	};
+
+	// 	getUsers();
+
+	// 	return () => {
+	// 		isMounted = false;
+	// 		controller.abort();
+	// 	};
+	// }, []);
+	// useEffect(() => {
+	// 	console.log("u hererer");
+	// 	const getDataBD = async () => {
+	// 		try {
+	// 			const response = await axiosPrivate.get("api/users");
+	// 			console.log(response);
+	// 			setDataUsers(response.data);
+
+	// 			console.log(dataUsers);
+	// 		} catch (err) {
+	// 			if (err.response) {
+	// 				// Not in the 200 response range
+	// 				console.log(err.response.data);
+	// 				console.log(err.response.status);
+	// 				console.log(err.response.headers);
+	// 			} else {
+	// 				console.log(`Error: ${err.message}`);
+	// 			}
+	// 		}
+	// 	};
+	// 	getDataBD();
+	// }, []);
 
 	const userColumns = [
 		{ field: "Username", headerName: "Username", width: 100 },

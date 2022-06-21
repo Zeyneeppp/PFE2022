@@ -67,8 +67,9 @@ function SignIn() {
 			setAuth({ userName, pwd, roles, accessToken });
 			setUserName("");
 			setPwd("");
-			// navigate("home");
-			navigate(from, { replace: true });
+			console.log(response.data);
+			navigate("home");
+			// navigate(from, { replace: true });
 		} catch (err) {
 			if (!err?.response) {
 				setErr("No Server Response");

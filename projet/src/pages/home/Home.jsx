@@ -11,18 +11,8 @@ import Table from "../../componets/table/Table";
 import { useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
-import SidebarVisitor from "../../componets/sidebar/SidebarVisitor";
 
 const Home = () => {
-	const { setAuth } = useContext(AuthContext);
-	const navigate = useNavigate();
-
-	const logout = async () => {
-		// if used in more components, this should be in context
-		// axios to /logout endpoint
-		setAuth({});
-		navigate("/login");
-	};
 	// if(roles==1000){<Sidebar />}
 
 	// else {<SidebarVisitor />}

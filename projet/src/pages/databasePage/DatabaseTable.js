@@ -11,24 +11,42 @@ import DialogData from "../../componets/popupdialog/DialogData";
 import CloudDownloadIcon from "@mui/icons-material/CloudDownload";
 import { Delete, Edit } from "@mui/icons-material";
 function DatabaseTable() {
+	const initialValue = {
+		CODE_SITE: "",
+		DESIGNATION_STRUCTURE: "",
+		CODE_BR: "",
+		TYPE: "",
+		NOM_WILAYA: "",
+		NUM_LIGNE: "",
+		Date_Act: "",
+		Date_exp: "",
+		NS_MODEM: "",
+		NS_SIM: "",
+		ADR_IP: "",
+		IMEI_MODEM: "",
+		LONGITUDE: "",
+		LATITUDE: "",
+	};
 	const gridRef = useRef();
 	const [gridApi, setGridApi] = useState(null);
 	const [gridColumnApi, setGridColumnApi] = useState(null);
 	const [openPopup, setOpenPopup] = useState(false);
-	const [formdata, setFormdata] = useState("");
+
+	const [formdata, setFormdata] = useState(initialValue);
 	const [dataBD, setDataBD] = useState([]);
+
+	const getDataBD = async () => {
+		try {
+			const res = await fetch("http://localhost:8080/api/try");
+			const getData = await res.json();
+			// Object.assign({}, getData);
+			setDataBD(getData);
+			console.log(dataBD);
+		} catch (e) {
+			console.log(e);
+		}
+	};
 	useEffect(() => {
-		const getDataBD = async () => {
-			try {
-				const res = await fetch("http://localhost:8080/api/all");
-				const getData = await res.json();
-				// Object.assign({}, getData);
-				setDataBD(getData);
-				console.log(dataBD);
-			} catch (e) {
-				console.log(e);
-			}
-		};
 		getDataBD();
 	}, []);
 	//const rowData = dataBD.map((getdata) => getdata.CODE_SITE);
@@ -48,7 +66,13 @@ function DatabaseTable() {
 	//*****************HANDLE DIALOG********** */
 	const onChange = (e) => {
 		const { value, id } = e.target;
+
+		// setWILAYA(value);
+		// setFormdata({ NOM_WILAYA: WILAYA });
+		console.log("id : ", id, "value :", value);
 		setFormdata({ ...formdata, [id]: value });
+
+		// setFormdata({ NOM_WILAYA: WILAYA });
 	};
 	const handleDialog = () => {
 		setOpenPopup(true);
@@ -58,22 +82,81 @@ function DatabaseTable() {
 		setFormdata("");
 	};
 	const handleFormSubmit = () => {
-		console.log("Not yet I have to create a server first");
+		console.log("WHAT IS THIS", formdata.NOM_WILAYA);
+		if (formdata.CODE_SITE) {
+			//updating a user
+			const confirm = window.confirm(
+				"Are you sure, you want to update this row ?"
+			);
+			confirm &&
+				fetch(`http://localhost:8080/api/site/${formdata.CODE_SITE}`, {
+					method: "PUT",
+					body: JSON.stringify(formdata),
+					headers: {
+						"content-type": "application/json",
+					},
+				})
+					.then((resp) => resp.json())
+					.then((resp) => {
+						handleClose();
+						getDataBD();
+					});
+		} else {
+			fetch("http://localhost:8080/api/site", {
+				method: "POST",
+				body: JSON.stringify(formdata),
+				headers: {
+					"content-type": "application/json",
+				},
+			})
+				.then((resp) => resp.json())
+				.then((resp) => {
+					handleClose();
+					getDataBD();
+					setFormdata(initialValue);
+				});
+		}
 	};
 
-	const handleDelete = () => {
-		const confirm = window.confirm(
-			"Are you sure, you want to delete this row ?"
-		);
-		console.log("Not yet I have to create a server first");
-
-		//setData(data.filter((item) => item.id !== id));
+	const handleDelete = (id) => {
+		const confirm = window.confirm("Are you sure, you want to delete ?");
+		if (confirm) {
+			fetch(`http://localhost:8080/api/site/${id}`, { method: "DELETE" })
+				.then((resp) => resp.json())
+				.then((resp) => getDataBD());
+		}
 	};
 	const handleUpdate = (data) => {
-		console.log(data);
-		setFormdata(data);
+		console.log("WHERE IS MY WILAYA", data.SITE.WILAYA.NOM_WILAYA);
+
+		let dataUp = {
+			CODE_SITE: data.SITE.CODE_SITE,
+			DESIGNATION_STRUCTURE: data.SITE.DESIGNATION_STRUCTURE,
+			CODE_BR: data.SITE.BRANCHE.CODE_BR,
+			TYPE: data.TYPE,
+			// NOM_WILAYA: data.SITE.WILAYA.NOM_WILAYA,
+			NOM_WILAYA: data.SITE.WILAYA.NOM_WILAYA,
+			NUM_LIGNE: data.NUM_LIGNE,
+			Date_Act: data.Date_Act,
+			Date_exp: data.Date_exp,
+			NS_MODEM: data.NS_MODEM,
+			NS_SIM: data.EQUIPEMENT.NS_SIM,
+			ADR_IP: data.EQUIPEMENT.ADR_IP,
+			IMEI_MODEM: data.EQUIPEMENT.IMEI_MODEM,
+			LONGITUDE: data.SITE.LONGITUDE,
+			LATITUDE: data.SITE.LATITUDE,
+		};
+
+		setFormdata(dataUp);
 		handleDialog();
 	};
+
+	// const handlewilaya = (event) => {
+	// 	event.target.id = "NOM_WILAYA";
+	// 	// console.log(event.target.id);
+	// 	// setWil(event.target.value);
+	// 	onChange(event);
+	// };
 
 	//************************************** */
 	const [columnDefs] = useState([
@@ -93,273 +176,48 @@ function DatabaseTable() {
 							sx={{
 								paddingRight: "100px",
 							}}
-							onClick={() => handleDelete(params.value)}
+							onClick={() => handleDelete(params.data.CODE_SITE)}
 						></Button>
 					</div>
 				);
 			},
 		},
 		{ field: "CODE_SITE", width: 150 },
-		{ field: "DESIGNATION_STRUCTURE", width: 220 },
-		{ field: "CODE_BR", width: 150 },
-		// { field: "CODE_WILAYA" },
+		{
+			field: "DESIGNATION_STRUCTURE",
+			width: 220,
+			valueGetter: (params) => params.data.SITE.DESIGNATION_STRUCTURE,
+		},
+		{
+			field: "CODE_BR",
+			width: 150,
+			valueGetter: (params) => params.data.SITE.BRANCHE.CODE_BR,
+		},
+		{
+			field: "NOM_WILAYA",
+			width: 150,
+			valueGetter: (params) => params.data.SITE.WILAYA.NOM_WILAYA,
+		},
 
 		{
 			field: "TYPE",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					return dataConst.LIAISON[i].TYPE;
-				}
-			},
 		},
 		{
 			field: "NUM_LIGNE",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					return dataConst.LIAISON[i].NUM_LIGNE;
-				}
-				return "/";
-			},
 		},
 		{
 			field: "NS_MODEM",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					return dataConst.LIAISON[i].EQUIPEMENT.NS_MODEM;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "NS_SIM_ADSL",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "ADSL") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_SIM;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "Adr_IP_ADSL",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "ADSL") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_SIM;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "DateAct_ADSL",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "ADSL") == true) {
-						return dataConst.LIAISON[i].DATE_ACTIVATION;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "DateExp_ADSL",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "ADSL") == true) {
-						return dataConst.LIAISON[i].DATE_EXPIRATION;
-					}
-					i++;
-				}
-				return "/";
-			},
 		},
 
 		{
-			field: "NUM_LIGNE_OOR",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "OOREDOO") == true) {
-						return dataConst.LIAISON[i].NUM_LIGNE;
-					}
-					i++;
-				}
-				return "/";
-			},
+			field: "NS_SIM",
+			valueGetter: (params) => params.data.EQUIPEMENT.NS_SIM,
 		},
 		{
-			field: "NS_MODEM_OOR",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "OOREDOO") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_MODEM;
-					}
-					i++;
-				}
-				return "/";
-			},
+			field: "Date_Act",
 		},
 		{
-			field: "NS_SIM_OOR",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "OOREDOO") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_SIM;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "Adr_IP_OOR",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "OOREDOO") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_SIM;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "NUM_LIGNE_MOB",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "MOBILIS") == true) {
-						return dataConst.LIAISON[i].NUM_LIGNE;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "NS_MODEM_MOB",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "MOBILIS") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_MODEM;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "NS_SIM_MOB",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "MOBILIS") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_SIM;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "Adr_IP_MOB",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "MOBILIS") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_SIM;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "NUM_LIGNE_4GL",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "4GLTE") == true) {
-						return dataConst.LIAISON[i].NUM_LIGNE;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "NS_MODEM_4GL",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "4GLTE") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_MODEM;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "NS_SIM_4GL",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "4GLTE") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_SIM;
-					}
-					i++;
-				}
-				return "/";
-			},
-		},
-		{
-			field: "Adr_IP_4GL",
-			valueGetter: (params) => {
-				var dataConst = params.data;
-				var i = 0;
-				while (i < dataConst.LIAISON.length) {
-					if (strCompare(dataConst.LIAISON[i].TYPE, "4GLTE") == true) {
-						return dataConst.LIAISON[i].EQUIPEMENT.NS_SIM;
-					}
-					i++;
-				}
-				return "/";
-			},
+			field: "Date_exp",
 		},
 	]);
 

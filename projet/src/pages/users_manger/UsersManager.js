@@ -20,101 +20,74 @@ import DialogUsers from "../../componets/popupdialog/DialogUsers";
 import DataService from "./DataService";
 
 import { useEffect } from "react";
+import axios, { axiosPrivate } from "../../Api/axios";
 
 const UsersManager = () => {
-	const initialValue = { username: "", email: "", branche: "" };
-	const [dataTable, setDataTable] = useState(userRows);
+	const initialValue = {
+		id: "",
+		Username: "",
+		Email: "",
+		FirstName: "",
+		LastName: "",
+		Branch: "",
+		Password: "",
+	};
+	// const [dataTable, setDataTable] = useState(userRows);
 	const [openPopup, setOpenPopup] = useState(false);
 	const [formdata, setFormdata] = useState(initialValue);
 	const [dataUsers, setDataUsers] = useState([]);
 
 	// useEffect(() => {
-	// 	let isMounted = true;
-	// 	const controller = new AbortController();
-
-	// 	const getUsers = async () => {
-	// 		try {
-	// 			const response = await axiosPrivate.get("api/users", {
-	// 				signal: controller.signal,
-	// 			});
-	// 			console.log(response.data);
-	// 			isMounted && setDataUsers(response.data);
-	// 		} catch (err) {
-	// 			console.error(err);
-	// 		}
-	// 	};
-
-	// 	getUsers();
-
-	// 	return () => {
-	// 		isMounted = false;
-	// 		controller.abort();
-	// 	};
-	// }, []);
-	// useEffect(() => {
-	// 	console.log("u hererer");
 	// 	const getDataBD = async () => {
 	// 		try {
-	// 			const response = await axiosPrivate.get("api/users");
-	// 			console.log(response);
-	// 			setDataUsers(response.data);
-
+	// 			const res = await fetch("http://localhost:8080/api/users");
+	// 			const getData = await res.json();
+	// 			// Object.assign({}, getData);
+	// 			setDataUsers(getData);
 	// 			console.log(dataUsers);
-	// 		} catch (err) {
-	// 			if (err.response) {
-	// 				// Not in the 200 response range
-	// 				console.log(err.response.data);
-	// 				console.log(err.response.status);
-	// 				console.log(err.response.headers);
-	// 			} else {
-	// 				console.log(`Error: ${err.message}`);
-	// 			}
+	// 		} catch (e) {
+	// 			console.log(e);
 	// 		}
 	// 	};
 	// 	getDataBD();
 	// }, []);
+	const getUsers = async () => {
+		try {
+			const response = await axios.get("api/users");
+			console.log(response.data);
+			setDataUsers(response.data);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	useEffect(() => {
+		getUsers();
+	}, []);
+	const rowData = dataUsers?.map((user) => {
+		return {
+			Username: user?.Username,
+			Email: user?.Email,
+			FirstName: user?.FirstName,
+			LastName: user?.LastName,
+			Branch: user?.Branch,
+			id: user?.UserID,
+		};
+	});
 
 	const userColumns = [
-		{ field: "Username", headerName: "Username", width: 100 },
-		// {
-		// 	field: "user",
-		// 	headerName: "User",
-		// 	width: 230,
-		// 	renderCell: (params) => {
-		// 		return (
-		// 			<div className="cellWithImg">
-		// 				<img src={params.row.img} alt="avatar" />
-		// 				{params.row.username}
-		// 			</div>
-		// 		);
-		// 	},
-		// },
-		{
-			field: "Email",
-			headerName: "Email",
-			width: 230,
-		},
-		{
-			field: "FirstName",
-			headerName: "FirstName",
-			width: 230,
-		},
-		{
-			field: "LastName",
-			headerName: "LastName",
-			width: 230,
-		},
+		{ field: "Username", width: 100 },
+		{ field: "Email", width: 230 },
+		{ field: "FirstName", width: 230 },
+		{ field: "LastName", width: 230 },
+		{ field: "Branch", width: 100 },
 
 		{
-			field: "Branch",
-			headerName: "Branch",
-			width: 100,
-		},
-		{
-			field: "action",
 			headerName: "Action",
 			width: 200,
 			renderCell: (params) => {
+				console.log("tell me what is params", params.value);
+				console.log("tell me what is params", params.row.id);
 				return (
 					<div className="cellAction">
 						<Button
@@ -127,7 +100,7 @@ const UsersManager = () => {
 							sx={{
 								paddingRight: "100px",
 							}}
-							onClick={() => handleDelete(params.value)}
+							onClick={() => handleDelete(params.row.id)}
 						></Button>
 					</div>
 				);
@@ -139,6 +112,7 @@ const UsersManager = () => {
 	const onChange = (e) => {
 		const { value, id } = e.target;
 		setFormdata({ ...formdata, [id]: value });
+		console.log("id =", id, "v=", value);
 	};
 	//-------------------------------------------HANDLE OPERATIONS------------------------------------------------
 	const handleDialog = () => {
@@ -149,16 +123,48 @@ const UsersManager = () => {
 		setFormdata(initialValue);
 	};
 	const handleFormSubmit = () => {
-		console.log("Not yet I have to create a server first");
+		console.log("WHAT IS THIS", formdata);
+		if (formdata.id) {
+			//updating a user
+			const confirm = window.confirm(
+				"Are you sure, you want to update this row ?"
+			);
+			confirm &&
+				fetch(`http://localhost:8080/api/${formdata.id}`, {
+					method: "PUT",
+					body: JSON.stringify(formdata),
+					headers: {
+						"content-type": "application/json",
+					},
+				})
+					.then((resp) => resp.json())
+					.then((resp) => {
+						handleClose();
+						getUsers();
+					});
+		} else {
+			fetch("http://localhost:8080/api/users", {
+				method: "POST",
+				body: JSON.stringify(formdata),
+				headers: {
+					"content-type": "application/json",
+				},
+			})
+				.then((resp) => resp.json())
+				.then((resp) => {
+					handleClose();
+					getUsers();
+					setFormdata(initialValue);
+				});
+		}
 	};
 	const handleDelete = (id) => {
-		const confirm = window.confirm(
-			"Are you sure, you want to delete this row :",
-			id
-		);
-		console.log("Not yet I have to create a server first");
-
-		//setData(data.filter((item) => item.id !== id));
+		const confirm = window.confirm("Are you sure, you want to delete ?");
+		if (confirm) {
+			fetch(`http://localhost:8080/api/${id}`, { method: "DELETE" })
+				.then((resp) => resp.json())
+				.then((resp) => getUsers());
+		}
 	};
 	const handleUpdate = (data) => {
 		console.log(data);
@@ -182,7 +188,7 @@ const UsersManager = () => {
 
 				<DataGrid
 					className="datagrid"
-					rows={dataTable}
+					rows={rowData}
 					columns={userColumns}
 					pageSize={9}
 					rowsPerPageOptions={[9]}

@@ -21,7 +21,6 @@ import Missing from "./componets/missingPage/Missing";
 import Unauthorized from "./componets/Unauth/Unauthorized";
 import Layout from "./componets/layout/Visitor";
 import useAuth from "./hooks/useAuth";
-import HomeV from "./pages/home/HomeV";
 import Admin from "./componets/layout/Admin";
 const ROLES = {
 	User: 2000,
@@ -34,6 +33,7 @@ function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<SignIn />} />
+			<Route path="login" element={<SignIn />} />
 			<Route path="unauthorized" element={<Unauthorized />} />
 			<Route
 				path="home"
@@ -52,14 +52,16 @@ function App() {
 					</RequireAuth>
 				}
 			/>
-			<Route
+
+			<Route path="users" element={<UsersManager />} />
+			{/* <Route
 				path="users"
 				element={
 					<RequireAuth allowedRoles={[ROLES.Admin]}>
 						<UsersManager />
 					</RequireAuth>
 				}
-			/>
+			/> */}
 			<Route
 				path="database"
 				element={

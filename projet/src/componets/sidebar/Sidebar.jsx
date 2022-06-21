@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Sidebar.scss";
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
@@ -7,10 +7,56 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import AuthContext from "../../context/AuthContext";
+import { Button } from "@mui/material";
 
 function Sidebar() {
+	const { auth } = useAuth();
+	const { setAuth } = useContext(AuthContext);
+	const navigate = useNavigate();
+
+	const logout = async () => {
+		// if used in more components, this should be in context
+		// axios to /logout endpoint
+		setAuth({});
+		navigate("/login");
+	};
+	let notif = "";
+	let users = "";
+	let globaltable = "";
+	if (auth.roles === 1000) {
+		notif = (
+			<Link to="/Notifications" style={{ textDecoration: "none" }}>
+				<li>
+					<NotificationsNoneOutlinedIcon
+						className="icon"
+						style={{ textDecoration: "none" }}
+					/>
+					<span>Notifications</span>
+					{/* <div className="counter">1</div> */}
+				</li>
+			</Link>
+		);
+		users = (
+			<Link to="/users" style={{ textDecoration: "none" }}>
+				<li>
+					<GroupOutlinedIcon className="icon" />
+					<span>Users</span>
+				</li>
+			</Link>
+		);
+		globaltable = (
+			<Link to="/database" style={{ textDecoration: "none" }}>
+				<li>
+					<span>Global Data</span>
+				</li>
+			</Link>
+		);
+	}
 	return (
 		<div className="sidebar">
 			<div className="top">
@@ -38,50 +84,12 @@ function Sidebar() {
 							/>
 							<span>Dashboard</span>
 						</li>
-
-						<Link to="/Notifications" style={{ textDecoration: "none" }}>
-							<li>
-								<NotificationsNoneOutlinedIcon
-									className="icon"
-									style={{ textDecoration: "none" }}
-								/>
-								<span>Notifications</span>
-								{/* <div className="counter">1</div> */}
-							</li>
-						</Link>
 					</Link>
-					<Link to="/users" style={{ textDecoration: "none" }}>
-						<li>
-							<GroupOutlinedIcon className="icon" />
-							<span>Users</span>
-						</li>
-					</Link>
+					{users}
+					{notif}
 
-					{/* <p className='title'>Branches
-                <p className='sous_title'> Les branches</p>
-                </p>
-                <Link to="database" style={{textDecoration :"none"}}>
-                    <li>
-                        <span>CBR</span>
-                    </li>
-                </Link>
-                <Link to="/database" style={{textDecoration :"none"}}>
-                    <li>
-                        <span>COM</span>
-                    </li>
-                </Link>
-                <Link to="/database" style={{textDecoration :"none"}}>
-                    <li>
-                        <span>GPL</span>
-                    </li>
-                </Link> */}
 					<p className="title">NETWORK</p>
-
-					<Link to="/database" style={{ textDecoration: "none" }}>
-						<li>
-							<span>Global Data</span>
-						</li>
-					</Link>
+					{globaltable}
 					<Link to="/admin" style={{ textDecoration: "none" }}>
 						<li>
 							<span>Admin</span>
@@ -133,6 +141,11 @@ function Sidebar() {
 							<span>GPL</span>
 						</li>
 					</Link> */}
+				<div className="logout">
+					<Button onClick={logout}>
+						<LogoutIcon className="icon" style={{ textDecoration: "none" }} />
+					</Button>
+				</div>
 			</div>
 		</div>
 	);

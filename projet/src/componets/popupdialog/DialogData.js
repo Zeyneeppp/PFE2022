@@ -62,8 +62,8 @@ function DialogData(props) {
 		LATITUDE,
 	} = formdata;
 
-	// const names = ["Adsl", "Mobilis", "Ooredoo", "Vpn", "4gLTE"];
-
+	const liaison = ["OOREDOO", "MOBILIS", "ADSL", "4GLTE", "VPN"];
+	const branche = ["CBR", "COM", "GPL", "DG"];
 	const WILAYA = [
 		"Adrar",
 		"Chlef",
@@ -155,10 +155,11 @@ function DialogData(props) {
 						fullWidth
 						variant="outlined"
 						margin="dense"
+						required
 						value={DESIGNATION_STRUCTURE}
 						onChange={(e) => onChange(e)}
 					/>
-					<TextField
+					{/* <TextField
 						id="CODE_BR"
 						placeholder="...."
 						label="CODE_BR"
@@ -178,12 +179,44 @@ function DialogData(props) {
 						value={NOM_WILAYA}
 						onChange={(e) => onChange(e)}
 					/>
-					{/* <TextField
+					<TextField
+						id="TYPE"
+						placeholder="...."
+						label="TYPE"
+						fullWidth
+						variant="outlined"
+						margin="dense"
+						value={TYPE}
+						onChange={(e) => onChange(e)}
+					/> */}
+					<TextField
+						id="CODE_BR"
+						select
+						placeholder="...."
+						label="CODE_BR"
+						fullWidth
+						required
+						variant="outlined"
+						margin="dense"
+						value={CODE_BR}
+						onChange={(e) => {
+							e.target.id = "CODE_BR";
+							onChange(e);
+						}}
+					>
+						{branche.map((br) => (
+							<MenuItem key={br} value={br}>
+								{br}
+							</MenuItem>
+						))}
+					</TextField>
+					<TextField
 						id="NOM_WILAYA"
 						select
 						placeholder="...."
 						label="NOM_WILAYA"
 						fullWidth
+						required
 						variant="outlined"
 						margin="dense"
 						value={NOM_WILAYA}
@@ -197,7 +230,29 @@ function DialogData(props) {
 								{wilaya}
 							</MenuItem>
 						))}
-					</TextField> */}
+					</TextField>
+
+					<TextField
+						id="TYPE"
+						select
+						placeholder="...."
+						label="TYPE"
+						fullWidth
+						required
+						variant="outlined"
+						margin="dense"
+						value={TYPE}
+						onChange={(e) => {
+							e.target.id = "TYPE";
+							onChange(e);
+						}}
+					>
+						{liaison.map((lias) => (
+							<MenuItem key={lias} value={lias}>
+								{lias}
+							</MenuItem>
+						))}
+					</TextField>
 
 					{/* <FormControl fullWidth>
 						<InputLabel id="WILAYA">WILAYA</InputLabel>
@@ -220,21 +275,13 @@ function DialogData(props) {
 							))}
 						</Select>
 					</FormControl> */}
-					<TextField
-						id="TYPE"
-						placeholder="...."
-						label="TYPE"
-						fullWidth
-						variant="outlined"
-						margin="dense"
-						value={TYPE}
-						onChange={(e) => onChange(e)}
-					/>
+
 					<TextField
 						id="NUM_LIGNE"
 						placeholder="...."
 						label="NUM_LIGNE"
 						fullWidth
+						required
 						variant="outlined"
 						margin="dense"
 						value={NUM_LIGNE}
@@ -287,6 +334,7 @@ function DialogData(props) {
 						placeholder="...."
 						label="NS_MODEM"
 						fullWidth
+						required
 						variant="outlined"
 						margin="dense"
 						value={NS_MODEM}

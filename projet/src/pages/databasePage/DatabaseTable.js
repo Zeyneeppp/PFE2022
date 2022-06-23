@@ -41,7 +41,7 @@ function DatabaseTable() {
 			const getData = await res.json();
 			// Object.assign({}, getData);
 			setDataBD(getData);
-			console.log(dataBD);
+			console.log("my dataa", dataBD);
 		} catch (e) {
 			console.log(e);
 		}
@@ -102,6 +102,7 @@ function DatabaseTable() {
 						getDataBD();
 					});
 		} else {
+			console.log(formdata);
 			fetch("http://localhost:8080/api/site", {
 				method: "POST",
 				body: JSON.stringify(formdata),

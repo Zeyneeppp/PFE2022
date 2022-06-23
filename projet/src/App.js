@@ -53,15 +53,15 @@ function App() {
 				}
 			/>
 
-			<Route path="users" element={<UsersManager />} />
-			{/* <Route
+			{/* <Route path="users" element={<UsersManager />} /> */}
+			<Route
 				path="users"
 				element={
 					<RequireAuth allowedRoles={[ROLES.Admin]}>
 						<UsersManager />
 					</RequireAuth>
 				}
-			/> */}
+			/>
 			<Route
 				path="database"
 				element={

@@ -85,16 +85,38 @@ function Sidebar() {
 							<span>Dashboard</span>
 						</li>
 					</Link>
+					{/* <Link to="/Notifications" style={{ textDecoration: "none" }}>
+						<li>
+							<NotificationsNoneOutlinedIcon
+								className="icon"
+								style={{ textDecoration: "none" }}
+							/>
+							<span>Notifications</span>
+							{/* <div className="counter">1</div> */}
+					{/* </li> */}
+					{/* </Link>  */}
+					{/* <Link to="/users" style={{ textDecoration: "none" }}>
+						<li>
+							<GroupOutlinedIcon className="icon" />
+							<span>Users</span>
+						</li>
+					</Link> */}
+
 					{users}
 					{notif}
 
 					<p className="title">NETWORK</p>
 					{globaltable}
-					<Link to="/admin" style={{ textDecoration: "none" }}>
+					{/* <Link to="/database" style={{ textDecoration: "none" }}>
+						<li>
+							<span>Global Data</span>
+						</li>
+					</Link> */}
+					{/* <Link to="/admin" style={{ textDecoration: "none" }}>
 						<li>
 							<span>Admin</span>
 						</li>
-					</Link>
+					</Link> */}
 					<Link to="/ooredoo" style={{ textDecoration: "none" }}>
 						<li>
 							<span>Ooredoo</span>

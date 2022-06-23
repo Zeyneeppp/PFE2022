@@ -13,6 +13,15 @@ import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 
 const Home = () => {
+	const { setAuth } = useContext(AuthContext);
+	const navigate = useNavigate();
+
+	const logout = async () => {
+		// if used in more components, this should be in context
+		// axios to /logout endpoint
+		setAuth({});
+		navigate("/login");
+	};
 	// if(roles==1000){<Sidebar />}
 
 	// else {<SidebarVisitor />}

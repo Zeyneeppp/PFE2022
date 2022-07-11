@@ -30,7 +30,7 @@ const Notifications = () => {
 	useEffect(() => {
 		getDataBD();
 	}, []);
-	console.log("datadb", dataDB);
+	console.log("datadbHERE", dataDB);
 	const filteredData = dataDB.filter((d) => {
 		console.log("display d.date", d.Date_exp);
 		if (d.Date_exp !== null) {
@@ -96,9 +96,9 @@ const Notifications = () => {
 							<TableRow>
 								<TableCell className="tableCell">Code Site</TableCell>
 								{/* <TableCell className="tableCell">Site</TableCell> */}
-								{/* <TableCell className="tableCell">Liaison</TableCell> */}
-								{/* <TableCell className="tableCell">Débit</TableCell> */}
-								{/* <TableCell className="tableCell">Ligne</TableCell> */}
+								<TableCell className="tableCell">Liaison</TableCell>
+								<TableCell className="tableCell">Débit</TableCell>
+								<TableCell className="tableCell">Ligne</TableCell>
 								{/* <span className={`status ${row.status}`}>{row.status}</span> */}
 								<TableCell className="tableCell">Status</TableCell>
 							</TableRow>
@@ -106,7 +106,10 @@ const Notifications = () => {
 						<TableBody>
 							{filteredData.map((row, index) => (
 								<TableRow key={index}>
-									<TableCell className="tableCell"> {row.CODE_SITE}</TableCell>
+									<TableCell className="tableCell">{row.CODE_SITE}</TableCell>
+									<TableCell className="tableCell"> {row.TYPE}</TableCell>
+									<TableCell className="tableCell"> {row.DEBIT}</TableCell>
+									<TableCell className="tableCell"> {row.NUM_LIGNE}</TableCell>
 
 									<TableCell className="tableCell">
 										<span className={`status ${status}`}>{status}</span>

@@ -43,12 +43,12 @@ const Home = () => {
 
 					{/* <Chart title="Statistique d'abonnements" aspect={2/1} /> */}
 				</div>
-				<div className="listContainer">
+				{/* <div className="listContainer">
 					<div className="listTitle">
 						<h1>Notifications</h1>
 					</div>
 					<Table />
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

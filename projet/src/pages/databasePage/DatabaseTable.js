@@ -34,10 +34,12 @@ function DatabaseTable() {
 
 	const [formdata, setFormdata] = useState(initialValue);
 	const [dataBD, setDataBD] = useState([]);
+	const [query, setQuery] = useState("");
 
 	const getDataBD = async () => {
 		try {
-			const res = await fetch("http://localhost:8080/api/try");
+			// const res = await fetch(`http://localhost:8080/api/try?q=${query}`);
+			const res = await fetch(`http://localhost:8080/api/try`);
 			const getData = await res.json();
 			// Object.assign({}, getData);
 			setDataBD(getData);
@@ -48,7 +50,7 @@ function DatabaseTable() {
 	};
 	useEffect(() => {
 		getDataBD();
-	}, []);
+	}, [query]);
 	//const rowData = dataBD.map((getdata) => getdata.CODE_SITE);
 
 	const ManipulationData = {
@@ -235,9 +237,9 @@ function DatabaseTable() {
 		setGridApi(params.api);
 		setGridColumnApi(params.columnApi);
 	}
-	const onFilterTextChange = (e) => {
-		gridApi.setQuickFilter(e.target.value);
-	};
+	// const onFilterTextChange = (e) => {
+	// 	gridApi.setQuickFilter(e.target.value);
+	// };
 	return (
 		<div className="pagetotale">
 			<Sidebar />
@@ -258,9 +260,10 @@ function DatabaseTable() {
 						<Box ml={63} sx={{ display: "flex" }}>
 							<div style={searchDivStyle}>
 								<input
-									type="search"
+									type="text"
 									style={searchStyle}
-									onChange={onFilterTextChange}
+									// onChange={onFilterTextChange}
+									onChange={(e) => setQuery(e.target.value)}
 									placeholder="Search ..."
 								/>
 							</div>

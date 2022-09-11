@@ -11,6 +11,7 @@ import Table from "../../componets/table/Table";
 import { useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
+import FeaturedParent from "../../componets/featured/FeaturedParent";
 
 const Home = () => {
 	const { setAuth } = useContext(AuthContext);
@@ -37,9 +38,7 @@ const Home = () => {
 					<Widget type="balance" />
 				</div>
 				<div className="charts">
-					<Featured />
-					<FeaturedOo />
-					<Featured4 />
+					<FeaturedParent />
 
 					{/* <Chart title="Statistique d'abonnements" aspect={2/1} /> */}
 				</div>
